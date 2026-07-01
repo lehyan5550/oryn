@@ -3,21 +3,21 @@ import ProductImage from "./ProductImage";
 
 const CATEGORY_TILES = [
   {
-    slug: "training",
-    name: "Training",
-    copy: "Built for reps, sets and everything between.",
+    slug: "entrainement",
+    name: "Entraînement",
+    copy: "Conçu pour les répétitions, les séries et tout ce qu'il y a entre les deux.",
     gradient: "from-neutral-800 via-neutral-900 to-black",
   },
   {
     slug: "combat",
     name: "Combat",
-    copy: "Ring and cage-ready performance gear.",
+    copy: "Un équipement de performance prêt pour le ring et la cage.",
     gradient: "from-oryn-red via-red-900 to-black",
   },
   {
     slug: "lifestyle",
     name: "Lifestyle",
-    copy: "Off-duty essentials with premium detail.",
+    copy: "Les essentiels hors entraînement, avec une finition premium.",
     gradient: "from-zinc-700 via-neutral-900 to-black",
   },
 ];
@@ -28,10 +28,10 @@ export default function CategoryPreview() {
       <div className="mx-auto max-w-8xl px-4 md:px-8">
         <div className="mb-10">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
-            Shop by Category
+            Achetez par Catégorie
           </p>
           <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
-            Find Your Discipline
+            Trouvez Votre Discipline
           </h2>
         </div>
 
@@ -39,7 +39,7 @@ export default function CategoryPreview() {
           {CATEGORY_TILES.map((tile) => (
             <Link
               key={tile.slug}
-              href={`/collection?category=${tile.slug}`}
+              href={`/collection/${tile.slug}`}
               className="group relative block aspect-[4/5] overflow-hidden"
             >
               <ProductImage
@@ -53,7 +53,7 @@ export default function CategoryPreview() {
                 </h3>
                 <p className="mt-1 text-sm text-neutral-200">{tile.copy}</p>
                 <span className="mt-4 inline-block w-fit border-b border-white text-xs font-bold uppercase tracking-widest2 text-white transition-colors group-hover:border-oryn-red group-hover:text-oryn-red">
-                  Shop {tile.name}
+                  Voir {tile.name}
                 </span>
               </div>
             </Link>

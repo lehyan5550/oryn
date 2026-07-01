@@ -3,9 +3,9 @@ import { BLOG_POSTS } from "@/data/blog";
 import ProductImage from "@/components/ProductImage";
 
 export const metadata = {
-  title: "The Journal — Training, Combat & Recovery Insights",
+  title: "Le Journal — Entraînement, Combat & Récupération",
   description:
-    "ORYN's Journal covers training methodology, combat conditioning, recovery and the mindset behind elite performance.",
+    "Le Journal ORYN explore la méthodologie d'entraînement, la préparation physique en sports de combat, la récupération et le mindset de la performance.",
   alternates: { canonical: "/blog" },
 };
 
@@ -16,10 +16,10 @@ export default function BlogPage() {
     <div className="mx-auto max-w-8xl px-4 py-12 md:px-8 md:py-16">
       <div className="mb-12">
         <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
-          The Journal
+          Le Journal
         </p>
         <h1 className="text-4xl font-extrabold uppercase tracking-tightest md:text-5xl">
-          Insights for Athletes
+          Décryptages pour Athlètes
         </h1>
       </div>
 
@@ -45,7 +45,7 @@ export default function BlogPage() {
             {featured.excerpt}
           </p>
           <span className="mt-4 inline-block w-fit text-xs font-bold uppercase tracking-widest2">
-            Read Article &rarr;
+            Lire l&apos;Article &rarr;
           </span>
         </div>
       </Link>

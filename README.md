@@ -1,57 +1,87 @@
 # ORYN
 
-Performance, combat and lifestyle apparel — a complete e-commerce storefront
-built with Next.js (App Router), React and Tailwind CSS.
+Vêtements de sport, fitness et combat lifestyle premium — boutique e-commerce
+complète en français, construite avec Next.js (App Router), React et
+Tailwind CSS, optimisée pour le marché et le SEO France.
 
-## Features
+## Fonctionnalités
 
-- Home, Collection, Product, Cart, About and Blog pages
-- Client-side cart (Context API + `useReducer`) persisted to `localStorage`
-- Category and price filtering, sorting on the collection page
-- Product variants (size/color), quantity controls, cart drawer + full cart page
-- SEO: per-page metadata, JSON-LD (Product, BlogPosting), `sitemap.xml`, `robots.txt`, dynamic favicon
-- Fully responsive, mobile-first UI in the ORYN black/white/red design system
+- Pages Accueil, Boutique, pages catégorie SEO (`/collection/[categorie]`),
+  Produit, Panier, À Propos, Journal (blog)
+- Panier côté client (Context API + `useReducer`), persisté en `localStorage`
+- Filtres catégorie/prix et tri sur la boutique
+- Variantes produit (taille/couleur), quantités, drawer panier + page panier complète
+- Prix en euros (formatage `Intl.NumberFormat('fr-FR')`)
+- Pages légales : Mentions Légales, CGV, Politique de Confidentialité,
+  Livraison & Retours, Guide des Tailles, Contact
+- SEO France : `lang="fr"`, meta par page, Open Graph `fr_FR`, JSON-LD
+  (Product, BlogPosting), `sitemap.xml`, `robots.txt`, favicon généré
+- Interface entièrement responsive, mobile-first
 
-## Getting Started
+## Démarrage
 
-Requires Node.js 18.18+ (Node 20+ recommended).
+Node.js 18.18+ requis (Node 20+ recommandé).
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Scripts
 
-- `npm run dev` — start the local dev server
-- `npm run build` — production build
-- `npm run start` — run the production build locally
-- `npm run lint` — lint the codebase
+- `npm run dev` — serveur de développement local
+- `npm run build` — build de production
+- `npm run start` — lance le build de production en local
+- `npm run lint` — lint du code
 
-## Project Structure
+## Structure du Projet
 
 ```
-app/                  Routes (App Router): home, collection, product/[slug],
-                       cart, about, blog, blog/[slug], sitemap, robots, icon
-components/            Reusable UI: Navbar, Footer, Hero, ProductCard,
-                       CartDrawer, AddToCartForm, CollectionGrid, etc.
-context/CartContext.js Cart state, persisted to localStorage
-data/                  Product catalog, blog posts, mock reviews
+app/                     Routes (App Router) : accueil, collection,
+                          collection/[category] (pages SEO par catégorie),
+                          product/[slug], cart, about, blog, blog/[slug],
+                          pages légales, sitemap, robots, icon
+components/               UI réutilisable : Navbar, Footer, Hero, ProductCard,
+                          CartDrawer, AddToCartForm, CollectionGrid, LegalPage...
+context/CartContext.js    État du panier, persisté en localStorage
+data/                     Catalogue produits (avec catégories FR + SEO),
+                          articles de blog, avis
+lib/format.js             Formatage des prix en EUR (fr-FR)
 ```
 
-## Content & Assets
+## SEO France — Ce Qui a Été Fait
 
-- Product, category and blog copy in `data/` is placeholder marketing content
-  — replace with real copy before launch.
-- Product/hero imagery uses a generated placeholder (`components/ProductImage.js`,
-  `components/Hero.js`) so the site renders correctly without photography.
-  Swap in real photos via `next/image` once assets are available.
-- No payment processor is wired up — the Checkout button on `/cart` is a UI
-  placeholder. Connect Stripe/Shopify/etc. before accepting real orders.
+- Domaine cible `oryn.fr` (ccTLD, geo-ciblage France) — à ajuster dans
+  `app/layout.js`, `app/sitemap.js` et `app/robots.js` si un autre domaine
+  est retenu.
+- Chaque catégorie a sa propre page indexable avec H1, texte d'intro et
+  meta title/description uniques (`/collection/entrainement`,
+  `/collection/combat`, `/collection/lifestyle`, `/collection/accessoires`)
+  plutôt que des paramètres d'URL non indexables.
+- Slugs d'articles de blog en français pour le référencement sur les
+  requêtes informationnelles.
+- JSON-LD `Product` (prix en EUR) et `BlogPosting` (`inLanguage: fr-FR`).
 
-## Deploying
+## Contenu & Visuels
 
-The app is a standard Next.js project and deploys as-is to Vercel, or any
-Node hosting that supports `next build` / `next start`.
+- Le contenu (produits, catégories, blog) dans `data/` est un texte
+  marketing de démonstration — à remplacer avant le lancement.
+- Les visuels produit/hero utilisent un placeholder généré
+  (`components/ProductImage.js`, `components/Hero.js`) pour que le site
+  s'affiche correctement sans photographie. À remplacer par de vraies
+  photos via `next/image` une fois les visuels disponibles.
+- Aucun moyen de paiement n'est branché — le bouton « Commander » sur
+  `/cart` est un élément d'interface. Connecter Stripe/PayPal/etc. avant
+  d'accepter de vraies commandes.
+- Les pages **Mentions Légales**, **CGV** et **Politique de
+  Confidentialité** contiennent des champs entre crochets
+  (`[Raison sociale]`, `[SIRET]`, etc.) à compléter avec les vraies
+  informations de l'entreprise avant la mise en ligne — obligatoire pour
+  un site e-commerce en France (LCEN, RGPD).
+
+## Déploiement
+
+L'application est un projet Next.js standard et se déploie tel quel sur
+Vercel, ou tout hébergement Node supportant `next build` / `next start`.

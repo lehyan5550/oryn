@@ -21,7 +21,7 @@ export default function AddToCartForm({ product }) {
     <div className="space-y-6">
       <div>
         <p className="mb-2 text-xs font-bold uppercase tracking-widest2">
-          Color: <span className="font-normal normal-case text-oryn-graydark">{color}</span>
+          Couleur : <span className="font-normal normal-case text-oryn-graydark">{color}</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {product.colors.map((c) => (
@@ -42,7 +42,7 @@ export default function AddToCartForm({ product }) {
 
       <div>
         <p className="mb-2 text-xs font-bold uppercase tracking-widest2">
-          Size: <span className="font-normal normal-case text-oryn-graydark">{size}</span>
+          Taille : <span className="font-normal normal-case text-oryn-graydark">{size}</span>
         </p>
         <div className="flex flex-wrap gap-2">
           {product.sizes.map((s) => (
@@ -62,12 +62,12 @@ export default function AddToCartForm({ product }) {
       </div>
 
       <div>
-        <p className="mb-2 text-xs font-bold uppercase tracking-widest2">Quantity</p>
+        <p className="mb-2 text-xs font-bold uppercase tracking-widest2">Quantité</p>
         <div className="flex w-fit items-center border border-oryn-gray">
           <button
             className="px-4 py-3 text-sm"
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            aria-label="Decrease quantity"
+            aria-label="Diminuer la quantité"
           >
             −
           </button>
@@ -75,7 +75,7 @@ export default function AddToCartForm({ product }) {
           <button
             className="px-4 py-3 text-sm"
             onClick={() => setQuantity((q) => q + 1)}
-            aria-label="Increase quantity"
+            aria-label="Augmenter la quantité"
           >
             +
           </button>
@@ -83,7 +83,7 @@ export default function AddToCartForm({ product }) {
       </div>
 
       <Button onClick={handleAdd} size="lg" fullWidth>
-        {added ? "Added to Cart ✓" : "Add to Cart"}
+        {added ? "Ajouté au Panier ✓" : "Ajouter au Panier"}
       </Button>
     </div>
   );

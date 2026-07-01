@@ -1,11 +1,47 @@
-// Product catalog for ORYN. Prices in USD (cents-free floats for simplicity).
-// `gradient` drives the placeholder artwork used in place of real product photography.
+// Catalogue produits ORYN. Prix en euros (EUR).
+// `gradient` pilote le visuel de substitution utilisé en attendant les vraies photos produit.
 
 export const CATEGORIES = [
-  { slug: "training", name: "Training" },
-  { slug: "combat", name: "Combat" },
-  { slug: "lifestyle", name: "Lifestyle" },
-  { slug: "accessories", name: "Accessories" },
+  {
+    key: "training",
+    slug: "entrainement",
+    name: "Entraînement",
+    seoTitle: "Vêtements d'Entraînement Premium",
+    seoDescription:
+      "Découvrez la collection Entraînement ORYN : t-shirts, leggings et shorts techniques conçus pour la performance en salle, en CrossFit et en musculation.",
+    seoIntro:
+      "Des matières respirantes, une coupe étudiée et une construction sans couture pour tenir la cadence, série après série.",
+  },
+  {
+    key: "combat",
+    slug: "combat",
+    name: "Combat",
+    seoTitle: "Vêtements de Combat & MMA Premium",
+    seoDescription:
+      "La collection Combat ORYN : shorts de boxe, rashguards et gants d'entraînement conçus pour le ring, la cage et les tatamis.",
+    seoIntro:
+      "Conçus avec des athlètes de MMA et de boxe pour résister à l'intensité de la préparation physique et de la compétition.",
+  },
+  {
+    key: "lifestyle",
+    slug: "lifestyle",
+    name: "Lifestyle",
+    seoTitle: "Vêtements Lifestyle Premium",
+    seoDescription:
+      "La collection Lifestyle ORYN : hoodies, joggers et vestes premium pensés pour la vie en dehors de la salle, sans compromis sur le style.",
+    seoIntro:
+      "Des pièces épaisses, bien coupées, à la finition soignée — l'uniforme officiel des athlètes hors compétition.",
+  },
+  {
+    key: "accessories",
+    slug: "accessoires",
+    name: "Accessoires",
+    seoTitle: "Accessoires de Sport & Combat",
+    seoDescription:
+      "Sacs de sport, gants d'entraînement et manchons de compression ORYN — les indispensables pour compléter votre équipement.",
+    seoIntro:
+      "Les détails qui font la différence entre une bonne séance et une séance sans compromis.",
+  },
 ];
 
 export const PRODUCTS = [
@@ -16,19 +52,19 @@ export const PRODUCTS = [
     category: "training",
     price: 45,
     compareAtPrice: null,
-    badges: ["Best Seller"],
+    badges: ["Meilleure Vente"],
     rating: 4.8,
     reviewCount: 214,
-    colors: ["Jet Black", "Off White", "Crimson"],
+    colors: ["Noir Jais", "Blanc Cassé", "Rouge Cramoisi"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     gradient: "from-neutral-900 via-neutral-700 to-neutral-900",
     description:
-      "Engineered for the last rep. The Apex Performance Tee moves with you through every set, sprint and strike, wicking sweat before it slows you down.",
+      "Conçu pour la dernière répétition. L'Apex Performance Tee vous accompagne à chaque série, chaque sprint et chaque échange, en évacuant la transpiration avant qu'elle ne vous ralentisse.",
     details: [
-      "4-way stretch moisture-wicking fabric",
-      "Flatlock seams eliminate chafing",
-      "Anti-odor treatment",
-      "Regular athletic fit",
+      "Matière stretch 4 directions anti-transpiration",
+      "Coutures plates anti-frottement",
+      "Traitement anti-odeur",
+      "Coupe athlétique régulière",
     ],
   },
   {
@@ -38,19 +74,19 @@ export const PRODUCTS = [
     category: "combat",
     price: 65,
     compareAtPrice: 80,
-    badges: ["Best Seller", "Sale"],
+    badges: ["Meilleure Vente", "Promo"],
     rating: 4.9,
     reviewCount: 168,
-    colors: ["Jet Black", "Crimson"],
+    colors: ["Noir Jais", "Rouge Cramoisi"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     gradient: "from-oryn-red via-red-900 to-neutral-900",
     description:
-      "Built for the ring and the cage. Fury Shorts pair a competition-grade slit with a locked-in waistband so nothing holds you back mid-round.",
+      "Conçu pour le ring et la cage. Le Fury Short associe une fente niveau compétition à une ceinture parfaitement maintenue pour ne rien vous freiner en plein round.",
     details: [
-      "Side slits for unrestricted kicks",
-      "Wide elastic + drawcord waistband",
-      "Lightweight ripstop shell",
-      "Reinforced stitching at stress points",
+      "Fentes latérales pour une liberté de mouvement totale",
+      "Ceinture élastique large + cordon de serrage",
+      "Coque légère en ripstop",
+      "Coutures renforcées aux points de tension",
     ],
   },
   {
@@ -60,19 +96,19 @@ export const PRODUCTS = [
     category: "lifestyle",
     price: 85,
     compareAtPrice: null,
-    badges: ["Best Seller"],
+    badges: ["Meilleure Vente"],
     rating: 4.9,
     reviewCount: 342,
-    colors: ["Jet Black", "Stone Gray"],
+    colors: ["Noir Jais", "Gris Pierre"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     gradient: "from-neutral-800 via-neutral-900 to-black",
     description:
-      "Heavyweight fleece with a premium drape. The Vanguard Hoodie is the off-duty uniform for those who train harder than everyone else.",
+      "Molleton épais, tombé premium. Le Vanguard Hoodie est la tenue officielle hors entraînement de ceux qui s'entraînent plus dur que tout le monde.",
     details: [
-      "420gsm brushed-back fleece",
-      "Ribbed cuffs and hem for lasting shape",
-      "Kangaroo pocket with hidden zip stash",
-      "Oversized, drop-shoulder fit",
+      "Molleton gratté 420g/m²",
+      "Poignets et bas côtelés pour garder sa forme",
+      "Poche kangourou avec rangement zippé caché",
+      "Coupe ample, épaules tombantes",
     ],
   },
   {
@@ -82,19 +118,19 @@ export const PRODUCTS = [
     category: "training",
     price: 70,
     compareAtPrice: null,
-    badges: ["New"],
+    badges: ["Nouveau"],
     rating: 4.7,
     reviewCount: 96,
-    colors: ["Jet Black", "Off White"],
+    colors: ["Noir Jais", "Blanc Cassé"],
     sizes: ["XS", "S", "M", "L", "XL"],
     gradient: "from-neutral-900 via-zinc-800 to-neutral-950",
     description:
-      "Second-skin compression that supports muscle recovery while you push through the final set. Squat-proof, sweat-proof, built for volume.",
+      "Une compression seconde peau qui soutient la récupération musculaire jusqu'à la dernière série. Anti-transparence, anti-transpiration, pensé pour le volume.",
     details: [
-      "Squat-proof 4-way stretch compression",
-      "High-rise waistband, no dig-in",
-      "Hidden waistband pocket",
-      "Flatlock seams",
+      "Compression stretch 4 directions anti-transparence",
+      "Taille haute, aucune gêne",
+      "Poche cachée à la ceinture",
+      "Coutures plates",
     ],
   },
   {
@@ -107,16 +143,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.6,
     reviewCount: 121,
-    colors: ["Jet Black", "Stone Gray", "Crimson"],
+    colors: ["Noir Jais", "Gris Pierre", "Rouge Cramoisi"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     gradient: "from-zinc-800 via-neutral-900 to-black",
     description:
-      "Tapered, tailored and built from brushed fleece. Reign Joggers carry you from the gym floor to the street without missing a beat.",
+      "Coupe fuselée, tombé soigné, molleton gratté. Le Reign Jogger vous accompagne de la salle de sport à la rue sans jamais perdre son style.",
     details: [
-      "Brushed fleece interior",
-      "Tapered leg with ribbed ankle cuff",
-      "Zippered side pockets",
-      "Adjustable drawcord waist",
+      "Intérieur molletonné gratté",
+      "Jambe fuselée, bas de jambe côtelé",
+      "Poches latérales zippées",
+      "Ceinture à cordon de serrage ajustable",
     ],
   },
   {
@@ -129,16 +165,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.7,
     reviewCount: 74,
-    colors: ["Jet Black", "Crimson"],
+    colors: ["Noir Jais", "Rouge Cramoisi"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     gradient: "from-red-900 via-oryn-red to-black",
     description:
-      "Compression-fit protection for grappling and striking alike. The Strike Rash Guard locks in place through every scramble.",
+      "Protection compression pour le grappling comme pour le striking. Le Strike Rash Guard reste en place à chaque échange, à chaque transition.",
     details: [
-      "UPF 50+ compression fabric",
-      "Flatlock stitching prevents mat burn",
-      "Long sleeve, rashguard-grade compression",
-      "Quick-dry technical fabric",
+      "Matière compression anti-UV UPF 50+",
+      "Coutures plates anti-brûlure de tatami",
+      "Manches longues, compression niveau rashguard",
+      "Séchage rapide",
     ],
   },
   {
@@ -151,16 +187,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.5,
     reviewCount: 58,
-    colors: ["Jet Black", "Off White", "Stone Gray"],
+    colors: ["Noir Jais", "Blanc Cassé", "Gris Pierre"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     gradient: "from-neutral-700 via-neutral-900 to-black",
     description:
-      "Drop-arm tank cut for maximum range of motion under the bar. Lightweight, breathable, unapologetically minimal.",
+      "Débardeur à emmanchure tombante taillé pour une amplitude de mouvement maximale sous la barre. Léger, respirant, résolument minimaliste.",
     details: [
-      "Dropped armhole for full mobility",
-      "Featherweight breathable mesh panels",
-      "Curved hem",
-      "Regular fit",
+      "Emmanchure tombante pour une mobilité totale",
+      "Panneaux en mesh ultra-léger et respirant",
+      "Bas incurvé",
+      "Coupe régulière",
     ],
   },
   {
@@ -170,19 +206,19 @@ export const PRODUCTS = [
     category: "lifestyle",
     price: 145,
     compareAtPrice: 175,
-    badges: ["Sale"],
+    badges: ["Promo"],
     rating: 4.9,
     reviewCount: 87,
-    colors: ["Jet Black"],
+    colors: ["Noir Jais"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     gradient: "from-neutral-950 via-black to-neutral-900",
     description:
-      "A statement outer layer for the ORYN athlete off the clock. Structured shoulders, weatherproof shell, minimal branding.",
+      "Une pièce forte pour l'athlète ORYN en dehors des heures d'entraînement. Épaules structurées, coque déperlante, branding minimal.",
     details: [
-      "Water-resistant shell fabric",
-      "Quilted thermal lining",
-      "Ribbed collar, cuffs and hem",
-      "Interior zip pocket",
+      "Coque extérieure déperlante",
+      "Doublure thermique matelassée",
+      "Col, poignets et bas côtelés",
+      "Poche intérieure zippée",
     ],
   },
   {
@@ -192,19 +228,19 @@ export const PRODUCTS = [
     category: "accessories",
     price: 35,
     compareAtPrice: null,
-    badges: ["New"],
+    badges: ["Nouveau"],
     rating: 4.6,
     reviewCount: 42,
-    colors: ["Jet Black", "Crimson"],
+    colors: ["Noir Jais", "Rouge Cramoisi"],
     sizes: ["S", "M", "L", "XL"],
     gradient: "from-neutral-800 via-oryn-red to-black",
     description:
-      "Reinforced palm padding built for barbell, bag and battle. The Grip Training Gloves protect your hands without sacrificing feel.",
+      "Un rembourrage renforcé pensé pour la barre, le sac de frappe et le combat. Le Grip Training Gloves protège vos mains sans sacrifier la sensation.",
     details: [
-      "Silicone-reinforced palm grip",
-      "Breathable mesh back panel",
-      "Adjustable wrist strap",
-      "Machine washable",
+      "Renfort paume en silicone antidérapant",
+      "Dos de main en mesh respirant",
+      "Sangle de poignet ajustable",
+      "Lavable en machine",
     ],
   },
   {
@@ -214,19 +250,19 @@ export const PRODUCTS = [
     category: "accessories",
     price: 60,
     compareAtPrice: null,
-    badges: ["Best Seller"],
+    badges: ["Meilleure Vente"],
     rating: 4.8,
     reviewCount: 133,
-    colors: ["Jet Black"],
-    sizes: ["One Size"],
+    colors: ["Noir Jais"],
+    sizes: ["Taille Unique"],
     gradient: "from-neutral-900 via-zinc-800 to-black",
     description:
-      "Ventilated shoe compartment, wet-gear pocket and a shell that shrugs off gym floors and locker rooms alike.",
+      "Compartiment chaussures ventilé, poche étanche pour affaires mouillées et une coque qui résiste aussi bien au sol de la salle qu'aux vestiaires.",
     details: [
-      "Dedicated ventilated shoe compartment",
-      "Water-resistant base panel",
-      "Adjustable padded shoulder strap",
-      "34L capacity",
+      "Compartiment chaussures ventilé dédié",
+      "Base déperlante",
+      "Bandoulière matelassée réglable",
+      "Capacité 34L",
     ],
   },
   {
@@ -236,19 +272,19 @@ export const PRODUCTS = [
     category: "lifestyle",
     price: 95,
     compareAtPrice: null,
-    badges: ["New"],
+    badges: ["Nouveau"],
     rating: 4.7,
     reviewCount: 51,
-    colors: ["Jet Black", "Stone Gray"],
+    colors: ["Noir Jais", "Gris Pierre"],
     sizes: ["S", "M", "L", "XL", "XXL"],
     gradient: "from-zinc-700 via-neutral-900 to-black",
     description:
-      "A lightweight full-zip layer for warmups and cooldowns. Streamlined silhouette, zero excess.",
+      "Une couche légère zippée pour l'échauffement et la récupération. Silhouette épurée, aucun superflu.",
     details: [
-      "Lightweight woven shell",
-      "Full-zip with stand collar",
-      "Zippered side pockets",
-      "Elastic cuffs and hem",
+      "Coque tissée légère",
+      "Zip intégral, col montant",
+      "Poches latérales zippées",
+      "Poignets et bas élastiqués",
     ],
   },
   {
@@ -261,16 +297,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.5,
     reviewCount: 39,
-    colors: ["Jet Black", "Off White"],
+    colors: ["Noir Jais", "Blanc Cassé"],
     sizes: ["XS", "S", "M", "L", "XL"],
     gradient: "from-neutral-800 via-neutral-950 to-black",
     description:
-      "Seamless construction for zero chafe, zero restriction. Built for HIIT, lifting and everything between.",
+      "Construction sans couture pour zéro frottement, zéro restriction. Pensé pour le HIIT, la musculation et tout le reste.",
     details: [
-      "Seamless knit construction",
-      "Built-in liner",
-      "5-inch inseam",
-      "Elastic waistband with drawcord",
+      "Construction tricotée sans couture",
+      "Doublure intégrée",
+      "Entrejambe 13 cm",
+      "Ceinture élastique avec cordon de serrage",
     ],
   },
   {
@@ -283,16 +319,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.4,
     reviewCount: 28,
-    colors: ["Jet Black", "Crimson"],
+    colors: ["Noir Jais", "Rouge Cramoisi"],
     sizes: ["S/M", "L/XL"],
     gradient: "from-oryn-red via-neutral-900 to-black",
     description:
-      "Graduated compression that supports joints through heavy loads and long rounds. Wear it under or over.",
+      "Une compression progressive qui soutient les articulations sous la charge et sur la durée. À porter en dessous ou au-dessus.",
     details: [
-      "Graduated compression knit",
-      "Anti-slip silicone band",
-      "Breathable, quick-dry",
-      "Sold as a pair",
+      "Tricot à compression progressive",
+      "Bande antidérapante en silicone",
+      "Respirant, séchage rapide",
+      "Vendu par paire",
     ],
   },
   {
@@ -305,16 +341,16 @@ export const PRODUCTS = [
     badges: [],
     rating: 4.6,
     reviewCount: 65,
-    colors: ["Jet Black", "Off White", "Stone Gray"],
+    colors: ["Noir Jais", "Blanc Cassé", "Gris Pierre"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
     gradient: "from-neutral-700 via-neutral-800 to-neutral-950",
     description:
-      "Cut wide at the shoulder and tapered at the waist. The Zenith Muscle Tee is built to move under heavy iron.",
+      "Coupe large aux épaules et resserrée à la taille. Le Zenith Muscle Tee est pensé pour bouger sous la fonte.",
     details: [
-      "Heavyweight cotton-blend jersey",
-      "Wide armhole, tapered fit",
-      "Ribbed crew neck",
-      "Pre-shrunk fabric",
+      "Jersey coton épais",
+      "Emmanchure large, coupe resserrée à la taille",
+      "Col rond côtelé",
+      "Matière pré-rétrécie",
     ],
   },
 ];
@@ -324,7 +360,7 @@ export function getProductBySlug(slug) {
 }
 
 export function getBestSellers() {
-  return PRODUCTS.filter((p) => p.badges.includes("Best Seller"));
+  return PRODUCTS.filter((p) => p.badges.includes("Meilleure Vente"));
 }
 
 export function getRelatedProducts(product, count = 4) {
@@ -333,7 +369,15 @@ export function getRelatedProducts(product, count = 4) {
   ).slice(0, count);
 }
 
-export function getProductsByCategory(categorySlug) {
-  if (!categorySlug || categorySlug === "all") return PRODUCTS;
-  return PRODUCTS.filter((p) => p.category === categorySlug);
+export function getProductsByCategory(categoryKey) {
+  if (!categoryKey || categoryKey === "all") return PRODUCTS;
+  return PRODUCTS.filter((p) => p.category === categoryKey);
+}
+
+export function getCategoryBySlug(slug) {
+  return CATEGORIES.find((c) => c.slug === slug);
+}
+
+export function getCategoryByKey(key) {
+  return CATEGORIES.find((c) => c.key === key);
 }

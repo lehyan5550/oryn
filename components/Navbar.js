@@ -6,10 +6,10 @@ import Logo from "./Logo";
 import { useCart } from "@/context/CartContext";
 
 const LINKS = [
-  { href: "/collection", label: "Shop" },
-  { href: "/collection?category=training", label: "Training" },
-  { href: "/collection?category=combat", label: "Combat" },
-  { href: "/about", label: "About" },
+  { href: "/collection", label: "Boutique" },
+  { href: "/collection/entrainement", label: "Entraînement" },
+  { href: "/collection/combat", label: "Combat" },
+  { href: "/about", label: "À Propos" },
   { href: "/blog", label: "Journal" },
 ];
 
@@ -35,7 +35,7 @@ export default function Navbar() {
         <button
           className="flex items-center md:hidden"
           onClick={() => setMenuOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label="Ouvrir le menu"
           aria-expanded={menuOpen}
         >
           <span className="flex h-5 w-6 flex-col justify-between">
@@ -45,7 +45,7 @@ export default function Navbar() {
           </span>
         </button>
 
-        <Link href="/" className="text-oryn-black" aria-label="ORYN home">
+        <Link href="/" className="text-oryn-black" aria-label="ORYN, retour à l'accueil">
           <Logo className="h-6 md:h-7" />
         </Link>
 
@@ -66,7 +66,7 @@ export default function Navbar() {
           <Link
             href="/collection"
             className="hidden text-xs font-bold uppercase tracking-widest2 text-oryn-black hover:text-oryn-red md:block"
-            aria-label="Search products"
+            aria-label="Rechercher un produit"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="7" />
@@ -76,7 +76,7 @@ export default function Navbar() {
           <button
             onClick={openDrawer}
             className="relative flex items-center"
-            aria-label={`Open cart, ${itemCount} items`}
+            aria-label={`Ouvrir le panier, ${itemCount} articles`}
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 6h15l-1.5 9h-12z" strokeLinejoin="round" />

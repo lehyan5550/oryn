@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import ProductImage from "./ProductImage";
 import Button from "./Button";
+import { formatPrice } from "@/lib/format";
 
 export default function CartDrawer() {
   const { items, subtotal, isDrawerOpen, closeDrawer, updateQuantity, removeItem } = useCart();
@@ -22,22 +23,22 @@ export default function CartDrawer() {
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
         role="dialog"
-        aria-label="Shopping cart"
+        aria-label="Panier"
       >
         <div className="flex items-center justify-between border-b border-oryn-gray px-6 py-5">
           <h2 className="text-sm font-bold uppercase tracking-widest2">
-            Cart ({items.reduce((n, i) => n + i.quantity, 0)})
+            Panier ({items.reduce((n, i) => n + i.quantity, 0)})
           </h2>
-          <button onClick={closeDrawer} aria-label="Close cart" className="text-2xl leading-none">
+          <button onClick={closeDrawer} aria-label="Fermer le panier" className="text-2xl leading-none">
             &times;
           </button>
         </div>
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
-            <p className="text-sm text-oryn-graydark">Your cart is empty.</p>
+            <p className="text-sm text-oryn-graydark">Votre panier est vide.</p>
             <Button href="/collection" onClick={closeDrawer} size="sm">
-              Shop Now
+              Acheter Maintenant
             </Button>
           </div>
         ) : (
@@ -66,7 +67,7 @@ export default function CartDrawer() {
                         <button
                           className="px-2.5 py-1 text-sm"
                           onClick={() => updateQuantity(item.key, item.quantity - 1)}
-                          aria-label="Decrease quantity"
+                          aria-label="Diminuer la quantité"
                         >
                           −
                         </button>
@@ -74,19 +75,19 @@ export default function CartDrawer() {
                         <button
                           className="px-2.5 py-1 text-sm"
                           onClick={() => updateQuantity(item.key, item.quantity + 1)}
-                          aria-label="Increase quantity"
+                          aria-label="Augmenter la quantité"
                         >
                           +
                         </button>
                       </div>
                       <span className="text-sm font-semibold">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        {formatPrice(item.price * item.quantity)}
                       </span>
                     </div>
                   </div>
                   <button
                     onClick={() => removeItem(item.key)}
-                    aria-label={`Remove ${item.name}`}
+                    aria-label={`Retirer ${item.name}`}
                     className="self-start text-oryn-graydark hover:text-oryn-red"
                   >
                     <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
@@ -99,14 +100,14 @@ export default function CartDrawer() {
 
             <div className="border-t border-oryn-gray px-6 py-6">
               <div className="mb-4 flex items-center justify-between text-sm font-semibold">
-                <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>Sous-total</span>
+                <span>{formatPrice(subtotal)}</span>
               </div>
               <p className="mb-4 text-xs text-oryn-graydark">
-                Shipping and taxes calculated at checkout.
+                Frais de livraison et taxes calculés lors du paiement.
               </p>
               <Button href="/cart" onClick={closeDrawer} fullWidth>
-                View Cart & Checkout
+                Voir le Panier & Commander
               </Button>
             </div>
           </>

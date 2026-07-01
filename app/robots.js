@@ -5,6 +5,6 @@ export default function robots() {
       allow: "/",
       disallow: ["/cart"],
     },
-    sitemap: "https://oryn.com/sitemap.xml",
+    sitemap: "https://oryn.fr/sitemap.xml",
   };
 }

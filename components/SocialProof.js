@@ -1,28 +1,28 @@
 const STATS = [
-  { value: "180K+", label: "Athletes Worldwide" },
-  { value: "4.8/5", label: "Average Rating" },
-  { value: "42", label: "Countries Shipped" },
-  { value: "10K+", label: "5-Star Reviews" },
+  { value: "180K+", label: "Athlètes dans le Monde" },
+  { value: "4,8/5", label: "Note Moyenne" },
+  { value: "42", label: "Pays Livrés" },
+  { value: "10K+", label: "Avis 5 Étoiles" },
 ];
 
 const TESTIMONIALS = [
   {
     quote:
-      "ORYN gear is the only thing I trust for fight camp. It moves with me and it still looks sharp after a hundred washes.",
+      "L'équipement ORYN est le seul en qui j'ai confiance pour préparer un combat. Il bouge avec moi et reste impeccable après une centaine de lavages.",
     author: "Marcus T.",
-    role: "Amateur MMA",
+    role: "MMA Amateur",
   },
   {
     quote:
-      "The Vanguard Hoodie basically lives on my body. Heavyweight, doesn't pill, fits exactly like the photos.",
+      "Le Vanguard Hoodie vit littéralement sur moi. Épais, ne bouloche pas, taille exactement comme sur les photos.",
     author: "Elena V.",
-    role: "Strength Coach",
+    role: "Coach de Force",
   },
   {
     quote:
-      "Finally a brand that gets both performance and looking good outside the gym. Repeat customer for life.",
+      "Enfin une marque qui comprend à la fois la performance et le style en dehors de la salle. Cliente fidèle pour longtemps.",
     author: "Diego M.",
-    role: "CrossFit Athlete",
+    role: "Athlète CrossFit",
   },
 ];
 
@@ -45,10 +45,10 @@ export default function SocialProof() {
 
         <div className="mb-10 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
-            Trusted By Athletes
+            La Confiance des Athlètes
           </p>
           <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
-            What They&apos;re Saying
+            Ce Qu&apos;ils En Disent
           </h2>
         </div>
 
@@ -66,7 +66,7 @@ export default function SocialProof() {
                 ))}
               </div>
               <p className="text-sm leading-relaxed text-oryn-black">
-                &ldquo;{t.quote}&rdquo;
+                &laquo;&nbsp;{t.quote}&nbsp;&raquo;
               </p>
               <footer className="mt-4 text-xs font-bold uppercase tracking-widest2 text-oryn-graydark">
                 {t.author} &mdash; {t.role}

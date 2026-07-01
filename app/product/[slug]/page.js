@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import StarRating from "@/components/StarRating";
 import Review from "@/components/Review";
 import AddToCartForm from "@/components/AddToCartForm";
+import { formatPrice } from "@/lib/format";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -43,7 +44,7 @@ export default async function ProductPage({ params }) {
     description: product.description,
     offers: {
       "@type": "Offer",
-      priceCurrency: "USD",
+      priceCurrency: "EUR",
       price: product.price,
       availability: "https://schema.org/InStock",
     },
@@ -64,9 +65,9 @@ export default async function ProductPage({ params }) {
       />
 
       <nav className="mb-8 text-xs text-oryn-graydark">
-        <Link href="/" className="hover:text-oryn-black">Home</Link>
+        <Link href="/" className="hover:text-oryn-black">Accueil</Link>
         <span className="mx-2">/</span>
-        <Link href="/collection" className="hover:text-oryn-black">Shop</Link>
+        <Link href="/collection" className="hover:text-oryn-black">Boutique</Link>
         <span className="mx-2">/</span>
         <span className="text-oryn-black">{product.name}</span>
       </nav>
@@ -83,7 +84,7 @@ export default async function ProductPage({ params }) {
                 <span
                   key={badge}
                   className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest2 ${
-                    badge === "Sale" ? "bg-oryn-red text-white" : "bg-oryn-black text-white"
+                    badge === "Promo" ? "bg-oryn-red text-white" : "bg-oryn-black text-white"
                   }`}
                 >
                   {badge}
@@ -101,10 +102,10 @@ export default async function ProductPage({ params }) {
           </div>
 
           <div className="mt-4 flex items-center gap-3">
-            <span className="text-2xl font-bold">${product.price.toFixed(2)}</span>
+            <span className="text-2xl font-bold">{formatPrice(product.price)}</span>
             {product.compareAtPrice && (
               <span className="text-lg text-oryn-graydark line-through">
-                ${product.compareAtPrice.toFixed(2)}
+                {formatPrice(product.compareAtPrice)}
               </span>
             )}
           </div>
@@ -119,7 +120,7 @@ export default async function ProductPage({ params }) {
 
           <div className="mt-10 border-t border-oryn-gray pt-8">
             <h2 className="mb-3 text-xs font-bold uppercase tracking-widest2">
-              Product Details
+              Détails du Produit
             </h2>
             <ul className="space-y-2">
               {product.details.map((detail) => (
@@ -135,12 +136,12 @@ export default async function ProductPage({ params }) {
 
       <section className="mt-20 max-w-2xl">
         <h2 className="mb-2 text-2xl font-extrabold uppercase tracking-tightest">
-          Reviews
+          Avis
         </h2>
         <div className="mb-6 flex items-center gap-3">
           <StarRating rating={product.rating} size="md" />
           <span className="text-sm text-oryn-graydark">
-            Based on {product.reviewCount} reviews
+            Basé sur {product.reviewCount} avis
           </span>
         </div>
         {reviews.length > 0 ? (
@@ -151,7 +152,7 @@ export default async function ProductPage({ params }) {
           </div>
         ) : (
           <p className="text-sm text-oryn-graydark">
-            No written reviews yet — be the first to share your experience.
+            Pas encore d&apos;avis écrit — soyez le premier à partager votre expérience.
           </p>
         )}
       </section>
@@ -159,7 +160,7 @@ export default async function ProductPage({ params }) {
       {related.length > 0 && (
         <section className="mt-24">
           <h2 className="mb-8 text-2xl font-extrabold uppercase tracking-tightest">
-            You May Also Like
+            Vous Aimerez Aussi
           </h2>
           <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-4 md:gap-x-6">
             {related.map((p) => (

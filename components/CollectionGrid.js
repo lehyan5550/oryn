@@ -1,21 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import ProductCard from "./ProductCard";
 
 const SORTS = [
-  { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "rating", label: "Top Rated" },
+  { value: "featured", label: "Mise en Avant" },
+  { value: "price-asc", label: "Prix Croissant" },
+  { value: "price-desc", label: "Prix Décroissant" },
+  { value: "rating", label: "Mieux Notés" },
 ];
 
 const PRICE_BANDS = [
-  { value: "all", label: "All Prices" },
-  { value: "under-50", label: "Under $50" },
-  { value: "50-100", label: "$50 – $100" },
-  { value: "over-100", label: "Over $100" },
+  { value: "all", label: "Tous les Prix" },
+  { value: "under-50", label: "Moins de 50 €" },
+  { value: "50-100", label: "50 € – 100 €" },
+  { value: "over-100", label: "Plus de 100 €" },
 ];
 
 function matchesPriceBand(price, band) {
@@ -25,14 +26,16 @@ function matchesPriceBand(price, band) {
   return true;
 }
 
-export default function CollectionGrid({ initialCategory = "all" }) {
-  const [category, setCategory] = useState(initialCategory);
+// `activeCategoryKey` locks the grid to one category (used by /collection/[category]
+// SEO landing pages); pass nothing to show the full catalog with category pills as
+// links to those dedicated pages.
+export default function CollectionGrid({ activeCategoryKey = "all" }) {
   const [priceBand, setPriceBand] = useState("all");
   const [sort, setSort] = useState("featured");
 
   const products = useMemo(() => {
     let list = PRODUCTS.filter(
-      (p) => category === "all" || p.category === category
+      (p) => activeCategoryKey === "all" || p.category === activeCategoryKey
     ).filter((p) => matchesPriceBand(p.price, priceBand));
 
     if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
@@ -40,34 +43,34 @@ export default function CollectionGrid({ initialCategory = "all" }) {
     if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
 
     return list;
-  }, [category, priceBand, sort]);
+  }, [activeCategoryKey, priceBand, sort]);
 
   return (
     <div>
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-oryn-gray pb-6">
         <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setCategory("all")}
+          <Link
+            href="/collection"
             className={`px-4 py-2 text-xs font-bold uppercase tracking-widest2 transition-colors ${
-              category === "all"
+              activeCategoryKey === "all"
                 ? "bg-oryn-black text-white"
                 : "border border-oryn-gray text-oryn-black hover:border-oryn-black"
             }`}
           >
-            All
-          </button>
+            Tout
+          </Link>
           {CATEGORIES.map((c) => (
-            <button
+            <Link
               key={c.slug}
-              onClick={() => setCategory(c.slug)}
+              href={`/collection/${c.slug}`}
               className={`px-4 py-2 text-xs font-bold uppercase tracking-widest2 transition-colors ${
-                category === c.slug
+                activeCategoryKey === c.key
                   ? "bg-oryn-black text-white"
                   : "border border-oryn-gray text-oryn-black hover:border-oryn-black"
               }`}
             >
               {c.name}
-            </button>
+            </Link>
           ))}
         </div>
 
@@ -76,7 +79,7 @@ export default function CollectionGrid({ initialCategory = "all" }) {
             value={priceBand}
             onChange={(e) => setPriceBand(e.target.value)}
             className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
-            aria-label="Filter by price"
+            aria-label="Filtrer par prix"
           >
             {PRICE_BANDS.map((b) => (
               <option key={b.value} value={b.value}>
@@ -88,7 +91,7 @@ export default function CollectionGrid({ initialCategory = "all" }) {
             value={sort}
             onChange={(e) => setSort(e.target.value)}
             className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
-            aria-label="Sort products"
+            aria-label="Trier les produits"
           >
             {SORTS.map((s) => (
               <option key={s.value} value={s.value}>
@@ -100,12 +103,12 @@ export default function CollectionGrid({ initialCategory = "all" }) {
       </div>
 
       <p className="mb-6 text-xs font-semibold uppercase tracking-widest2 text-oryn-graydark">
-        {products.length} {products.length === 1 ? "Product" : "Products"}
+        {products.length} {products.length === 1 ? "Produit" : "Produits"}
       </p>
 
       {products.length === 0 ? (
         <p className="py-20 text-center text-sm text-oryn-graydark">
-          No products match your filters.
+          Aucun produit ne correspond à vos filtres.
         </p>
       ) : (
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">

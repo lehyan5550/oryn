@@ -38,6 +38,7 @@ export default async function BlogPostPage({ params }) {
     headline: post.title,
     datePublished: post.date,
     description: post.excerpt,
+    inLanguage: "fr-FR",
   };
 
   return (
@@ -48,7 +49,7 @@ export default async function BlogPostPage({ params }) {
       />
 
       <nav className="mb-8 text-xs text-oryn-graydark">
-        <Link href="/" className="hover:text-oryn-black">Home</Link>
+        <Link href="/" className="hover:text-oryn-black">Accueil</Link>
         <span className="mx-2">/</span>
         <Link href="/blog" className="hover:text-oryn-black">Journal</Link>
       </nav>
@@ -60,7 +61,7 @@ export default async function BlogPostPage({ params }) {
         {post.title}
       </h1>
       <p className="mt-4 text-sm text-oryn-graydark">
-        {new Date(post.date).toLocaleDateString("en-US", {
+        {new Date(post.date).toLocaleDateString("fr-FR", {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -89,7 +90,7 @@ export default async function BlogPostPage({ params }) {
       {more.length > 0 && (
         <div className="mt-20 border-t border-oryn-gray pt-10">
           <h2 className="mb-6 text-lg font-bold uppercase tracking-widest2">
-            More From the Journal
+            À Lire Aussi sur le Journal
           </h2>
           <ul className="space-y-4">
             {more.map((p) => (

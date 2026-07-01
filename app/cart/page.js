@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import ProductImage from "@/components/ProductImage";
 import Button from "@/components/Button";
+import { formatPrice } from "@/lib/format";
 
 const FREE_SHIPPING_THRESHOLD = 100;
 
@@ -15,14 +16,14 @@ export default function CartPage() {
     return (
       <div className="mx-auto flex min-h-[60vh] max-w-8xl flex-col items-center justify-center px-4 text-center">
         <h1 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
-          Your Cart Is Empty
+          Votre Panier Est Vide
         </h1>
         <p className="mt-3 max-w-md text-sm text-oryn-graydark">
-          Looks like you haven&apos;t added anything yet. Explore the collection
-          and find your next training kit.
+          Vous n&apos;avez encore rien ajouté. Explorez la collection et
+          trouvez votre prochain kit d&apos;entraînement.
         </p>
         <Button href="/collection" size="lg" className="mt-8">
-          Shop Now
+          Acheter Maintenant
         </Button>
       </div>
     );
@@ -31,17 +32,17 @@ export default function CartPage() {
   return (
     <div className="mx-auto max-w-8xl px-4 py-12 md:px-8 md:py-16">
       <h1 className="mb-10 text-4xl font-extrabold uppercase tracking-tightest md:text-5xl">
-        Your Cart
+        Votre Panier
       </h1>
 
       {remainingForFreeShipping > 0 ? (
         <p className="mb-8 border border-oryn-gray bg-oryn-gray/30 px-4 py-3 text-sm">
-          Add <strong>${remainingForFreeShipping.toFixed(2)}</strong> more to
-          unlock free worldwide shipping.
+          Ajoutez <strong>{formatPrice(remainingForFreeShipping)}</strong> de
+          plus pour débloquer la livraison gratuite en France.
         </p>
       ) : (
         <p className="mb-8 border border-oryn-black bg-oryn-black px-4 py-3 text-sm text-white">
-          You&apos;ve unlocked free worldwide shipping.
+          Vous avez débloqué la livraison gratuite.
         </p>
       )}
 
@@ -68,7 +69,7 @@ export default function CartPage() {
                       </p>
                     </div>
                     <span className="whitespace-nowrap text-sm font-semibold md:text-base">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
 
@@ -77,7 +78,7 @@ export default function CartPage() {
                       <button
                         className="px-3 py-2 text-sm"
                         onClick={() => updateQuantity(item.key, item.quantity - 1)}
-                        aria-label="Decrease quantity"
+                        aria-label="Diminuer la quantité"
                       >
                         −
                       </button>
@@ -85,7 +86,7 @@ export default function CartPage() {
                       <button
                         className="px-3 py-2 text-sm"
                         onClick={() => updateQuantity(item.key, item.quantity + 1)}
-                        aria-label="Increase quantity"
+                        aria-label="Augmenter la quantité"
                       >
                         +
                       </button>
@@ -94,7 +95,7 @@ export default function CartPage() {
                       onClick={() => removeItem(item.key)}
                       className="text-xs font-semibold uppercase tracking-widest2 text-oryn-graydark hover:text-oryn-red"
                     >
-                      Remove
+                      Retirer
                     </button>
                   </div>
                 </div>
@@ -106,35 +107,35 @@ export default function CartPage() {
             href="/collection"
             className="mt-6 inline-block text-xs font-bold uppercase tracking-widest2 hover:text-oryn-red"
           >
-            &larr; Continue Shopping
+            &larr; Continuer mes Achats
           </Link>
         </div>
 
         <div className="h-fit border border-oryn-gray p-6 md:p-8">
           <h2 className="mb-6 text-xs font-bold uppercase tracking-widest2">
-            Order Summary
+            Récapitulatif de la Commande
           </h2>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <span className="text-oryn-graydark">Subtotal</span>
-              <span className="font-semibold">${subtotal.toFixed(2)}</span>
+              <span className="text-oryn-graydark">Sous-total</span>
+              <span className="font-semibold">{formatPrice(subtotal)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-oryn-graydark">Shipping</span>
+              <span className="text-oryn-graydark">Livraison</span>
               <span className="font-semibold">
-                {subtotal >= FREE_SHIPPING_THRESHOLD ? "Free" : "Calculated at checkout"}
+                {subtotal >= FREE_SHIPPING_THRESHOLD ? "Gratuite" : "Calculée à l'étape suivante"}
               </span>
             </div>
           </div>
           <div className="mt-4 flex justify-between border-t border-oryn-gray pt-4 text-base font-bold">
             <span>Total</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>{formatPrice(subtotal)}</span>
           </div>
           <Button size="lg" fullWidth className="mt-6">
-            Checkout
+            Commander
           </Button>
           <p className="mt-4 text-center text-xs text-oryn-graydark">
-            Taxes calculated at checkout. Secure payment.
+            Taxes calculées à l&apos;étape suivante. Paiement sécurisé.
           </p>
         </div>
       </div>

@@ -12,36 +12,39 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://oryn.com";
+const siteUrl = "https://oryn.fr";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ORYN — Performance & Combat Lifestyle Apparel",
+    default: "ORYN — Vêtements de Sport, Fitness & Combat Premium",
     template: "%s | ORYN",
   },
   description:
-    "ORYN is a global performance apparel brand for fitness, training and combat lifestyle athletes. Shop premium training gear built to move with you.",
+    "ORYN est une marque premium de vêtements de sport, fitness et combat lifestyle. Découvrez des équipements d'entraînement haut de gamme, livrés partout en France.",
   keywords: [
     "ORYN",
-    "performance apparel",
-    "combat sports clothing",
-    "training gear",
-    "fitness lifestyle brand",
+    "vêtements de sport premium",
+    "vêtements de combat",
+    "équipement d'entraînement",
+    "marque fitness lifestyle",
+    "vêtements de fitness France",
+    "boxe MMA vêtements",
   ],
   openGraph: {
-    title: "ORYN — Performance & Combat Lifestyle Apparel",
+    title: "ORYN — Vêtements de Sport, Fitness & Combat Premium",
     description:
-      "Premium performance apparel for fitness, training and combat lifestyle athletes.",
+      "Vêtements de sport premium pour les athlètes de fitness, d'entraînement et de combat lifestyle. Livraison en France.",
     url: siteUrl,
     siteName: "ORYN",
+    locale: "fr_FR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ORYN — Performance & Combat Lifestyle Apparel",
+    title: "ORYN — Vêtements de Sport, Fitness & Combat Premium",
     description:
-      "Premium performance apparel for fitness, training and combat lifestyle athletes.",
+      "Vêtements de sport premium pour les athlètes de fitness, d'entraînement et de combat lifestyle.",
   },
   robots: {
     index: true,
@@ -51,7 +54,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="fr" className={inter.variable}>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <CartProvider>
           <Navbar />

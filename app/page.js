@@ -5,9 +5,9 @@ import SocialProof from "@/components/SocialProof";
 import Newsletter from "@/components/Newsletter";
 
 export const metadata = {
-  title: "ORYN — Performance & Combat Lifestyle Apparel",
+  title: "ORYN — Vêtements de Sport, Fitness & Combat Premium",
   description:
-    "Shop ORYN's premium training, combat and lifestyle apparel. Engineered to move, built to last. Free worldwide shipping over $100.",
+    "Découvrez les vêtements d'entraînement, de combat et lifestyle premium ORYN. Conçus pour bouger, faits pour durer. Livraison gratuite en France dès 100€.",
   alternates: { canonical: "/" },
 };
 

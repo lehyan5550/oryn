@@ -10,17 +10,17 @@ export default function BestSellers() {
       <div className="mb-10 flex items-end justify-between">
         <div>
           <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
-            Fan Favorites
+            Les Préférés
           </p>
           <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
-            Best Sellers
+            Meilleures Ventes
           </h2>
         </div>
         <Link
           href="/collection"
           className="hidden text-xs font-bold uppercase tracking-widest2 hover:text-oryn-red md:block"
         >
-          View All &rarr;
+          Voir Tout &rarr;
         </Link>
       </div>
 
@@ -35,7 +35,7 @@ export default function BestSellers() {
           href="/collection"
           className="text-xs font-bold uppercase tracking-widest2 hover:text-oryn-red"
         >
-          View All &rarr;
+          Voir Tout &rarr;
         </Link>
       </div>
     </section>

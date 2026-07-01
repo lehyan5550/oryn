@@ -7,7 +7,7 @@ export default function Review({ review }) {
         <StarRating rating={review.rating} />
         {review.verified && (
           <span className="text-[10px] font-bold uppercase tracking-widest2 text-green-700">
-            Verified Buyer
+            Achat Vérifié
           </span>
         )}
       </div>
@@ -20,7 +20,7 @@ export default function Review({ review }) {
       <p className="mt-3 text-xs font-semibold uppercase tracking-widest2 text-oryn-black">
         {review.author}
         <span className="ml-2 font-normal normal-case text-oryn-graydark">
-          {new Date(review.date).toLocaleDateString("en-US", {
+          {new Date(review.date).toLocaleDateString("fr-FR", {
             year: "numeric",
             month: "long",
             day: "numeric",
