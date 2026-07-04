@@ -3,22 +3,39 @@ import ProductImage from "./ProductImage";
 
 const CATEGORY_TILES = [
   {
-    slug: "entrainement",
-    name: "Entraînement",
-    copy: "Conçu pour les répétitions, les séries et tout ce qu'il y a entre les deux.",
-    gradient: "from-neutral-800 via-neutral-900 to-black",
+    slug: "lifestyle",
+    name: "Lifestyle",
+    copy: "Hoodies, joggers et essentiels épais, hors entraînement.",
+    gradient: "from-zinc-700 via-neutral-900 to-black",
+    icon: "hoodie",
   },
   {
     slug: "combat",
     name: "Combat",
     copy: "Un équipement de performance prêt pour le ring et la cage.",
     gradient: "from-oryn-red via-red-900 to-black",
+    icon: "boxing-gloves",
   },
   {
-    slug: "lifestyle",
-    name: "Lifestyle",
-    copy: "Les essentiels hors entraînement, avec une finition premium.",
-    gradient: "from-zinc-700 via-neutral-900 to-black",
+    slug: "entrainement",
+    name: "Entraînement",
+    copy: "Conçu pour les répétitions, les séries et tout ce qu'il y a entre les deux.",
+    gradient: "from-neutral-800 via-neutral-900 to-black",
+    icon: "dumbbell",
+  },
+  {
+    slug: "recuperation",
+    name: "Récupération",
+    copy: "Récupérer aussi sérieusement que vous vous entraînez.",
+    gradient: "from-neutral-900 via-zinc-800 to-black",
+    icon: "massage-gun",
+  },
+  {
+    slug: "accessoires",
+    name: "Accessoires",
+    copy: "Les détails qui complètent un équipement sans compromis.",
+    gradient: "from-neutral-800 via-zinc-900 to-black",
+    icon: "duffel-bag",
   },
 ];
 
@@ -35,7 +52,7 @@ export default function CategoryPreview() {
           </h2>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-5">
           {CATEGORY_TILES.map((tile) => (
             <Link
               key={tile.slug}
@@ -44,15 +61,16 @@ export default function CategoryPreview() {
             >
               <ProductImage
                 gradient={tile.gradient}
+                icon={tile.icon}
                 compact
                 className="h-full transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/10 to-transparent p-6">
-                <h3 className="text-2xl font-extrabold uppercase tracking-tightest text-white">
+              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/10 to-transparent p-4 md:p-6">
+                <h3 className="text-lg font-extrabold uppercase tracking-tightest text-white md:text-2xl">
                   {tile.name}
                 </h3>
-                <p className="mt-1 text-sm text-neutral-200">{tile.copy}</p>
-                <span className="mt-4 inline-block w-fit border-b border-white text-xs font-bold uppercase tracking-widest2 text-white transition-colors group-hover:border-oryn-red group-hover:text-oryn-red">
+                <p className="mt-1 hidden text-sm text-neutral-200 md:block">{tile.copy}</p>
+                <span className="mt-2 inline-block w-fit border-b border-white text-[11px] font-bold uppercase tracking-widest2 text-white transition-colors group-hover:border-oryn-red group-hover:text-oryn-red md:mt-4 md:text-xs">
                   Voir {tile.name}
                 </span>
               </div>

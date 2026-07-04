@@ -13,6 +13,7 @@ export default function ProductCard({ product }) {
       <div className="relative aspect-[4/5] w-full overflow-hidden bg-oryn-gray">
         <ProductImage
           gradient={product.gradient}
+          icon={product.icon}
           name={product.name}
           className="h-full transition-transform duration-500 group-hover:scale-105"
         />

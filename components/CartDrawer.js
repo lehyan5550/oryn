@@ -47,7 +47,7 @@ export default function CartDrawer() {
               {items.map((item) => (
                 <li key={item.key} className="flex gap-4 py-5">
                   <div className="h-24 w-20 flex-shrink-0">
-                    <ProductImage gradient={item.gradient} compact className="h-full" />
+                    <ProductImage gradient={item.gradient} icon={item.icon} compact className="h-full" />
                   </div>
                   <div className="flex flex-1 flex-col justify-between">
                     <div>

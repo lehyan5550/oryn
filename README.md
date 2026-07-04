@@ -17,6 +17,10 @@ Tailwind CSS, optimisée pour le marché et le SEO France.
 - SEO France : `lang="fr"`, meta par page, Open Graph `fr_FR`, JSON-LD
   (Product, BlogPosting), `sitemap.xml`, `robots.txt`, favicon généré
 - Interface entièrement responsive, mobile-first
+- Catalogue de 35 produits sur 5 catégories (Lifestyle, Combat,
+  Entraînement, Récupération, Accessoires), avec une icône vectorielle
+  dessinée pour chaque produit (`components/ProductIcon.js`) en attendant
+  la photographie réelle
 
 ## Démarrage
 
@@ -57,9 +61,10 @@ lib/format.js             Formatage des prix en EUR (fr-FR)
   `app/layout.js`, `app/sitemap.js` et `app/robots.js` si un autre domaine
   est retenu.
 - Chaque catégorie a sa propre page indexable avec H1, texte d'intro et
-  meta title/description uniques (`/collection/entrainement`,
-  `/collection/combat`, `/collection/lifestyle`, `/collection/accessoires`)
-  plutôt que des paramètres d'URL non indexables.
+  meta title/description uniques (`/collection/lifestyle`,
+  `/collection/combat`, `/collection/entrainement`,
+  `/collection/recuperation`, `/collection/accessoires`) plutôt que des
+  paramètres d'URL non indexables.
 - Slugs d'articles de blog en français pour le référencement sur les
   requêtes informationnelles.
 - JSON-LD `Product` (prix en EUR) et `BlogPosting` (`inLanguage: fr-FR`).
@@ -68,10 +73,11 @@ lib/format.js             Formatage des prix en EUR (fr-FR)
 
 - Le contenu (produits, catégories, blog) dans `data/` est un texte
   marketing de démonstration — à remplacer avant le lancement.
-- Les visuels produit/hero utilisent un placeholder généré
-  (`components/ProductImage.js`, `components/Hero.js`) pour que le site
-  s'affiche correctement sans photographie. À remplacer par de vraies
-  photos via `next/image` une fois les visuels disponibles.
+- Les visuels produit utilisent une icône vectorielle dessinée
+  spécifiquement pour chaque produit (`components/ProductIcon.js`,
+  affichée via `components/ProductImage.js`) pour que le site s'affiche
+  correctement sans photographie. À remplacer par de vraies photos via
+  `next/image` une fois les visuels disponibles.
 - Aucun moyen de paiement n'est branché — le bouton « Commander » sur
   `/cart` est un élément d'interface. Connecter Stripe/PayPal/etc. avant
   d'accepter de vraies commandes.

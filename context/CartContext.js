@@ -46,6 +46,7 @@ function cartReducer(state, action) {
             name: product.name,
             price: product.price,
             gradient: product.gradient,
+            icon: product.icon,
             size,
             color,
             quantity,

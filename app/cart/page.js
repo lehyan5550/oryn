@@ -52,7 +52,7 @@ export default function CartPage() {
             {items.map((item) => (
               <li key={item.key} className="flex gap-5 py-6">
                 <div className="h-32 w-24 flex-shrink-0 md:h-40 md:w-32">
-                  <ProductImage gradient={item.gradient} compact className="h-full" />
+                  <ProductImage gradient={item.gradient} icon={item.icon} compact className="h-full" />
                 </div>
 
                 <div className="flex flex-1 flex-col justify-between">

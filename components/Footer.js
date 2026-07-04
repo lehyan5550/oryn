@@ -6,9 +6,10 @@ const COLUMNS = [
     title: "Boutique",
     links: [
       { href: "/collection", label: "Tous les Produits" },
-      { href: "/collection/entrainement", label: "Entraînement" },
-      { href: "/collection/combat", label: "Combat" },
       { href: "/collection/lifestyle", label: "Lifestyle" },
+      { href: "/collection/combat", label: "Combat" },
+      { href: "/collection/entrainement", label: "Entraînement" },
+      { href: "/collection/recuperation", label: "Récupération" },
       { href: "/collection/accessoires", label: "Accessoires" },
     ],
   },

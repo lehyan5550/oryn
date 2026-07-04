@@ -74,7 +74,12 @@ export default async function ProductPage({ params }) {
 
       <div className="grid gap-10 md:grid-cols-2 md:gap-16">
         <div className="aspect-[4/5] w-full">
-          <ProductImage gradient={product.gradient} name={product.name} className="h-full" />
+          <ProductImage
+            gradient={product.gradient}
+            icon={product.icon}
+            name={product.name}
+            className="h-full"
+          />
         </div>
 
         <div>
