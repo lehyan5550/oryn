@@ -1,3 +1,5 @@
+import Reveal from "./Reveal";
+
 const STATS = [
   { value: "180K+", label: "Athlètes dans le Monde" },
   { value: "4,8/5", label: "Note Moyenne" },
@@ -31,33 +33,30 @@ export default function SocialProof() {
     <section className="border-y border-oryn-gray bg-white py-20 md:py-28">
       <div className="mx-auto max-w-8xl px-4 md:px-8">
         <div className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
+          {STATS.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 100} className="text-center">
               <p className="text-3xl font-extrabold tracking-tightest text-oryn-black md:text-4xl">
                 {stat.value}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-widest2 text-oryn-graydark">
                 {stat.label}
               </p>
-            </div>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mb-10 text-center">
+        <Reveal className="mb-10 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
             La Confiance des Athlètes
           </p>
           <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
             Ce Qu&apos;ils En Disent
           </h2>
-        </div>
+        </Reveal>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <blockquote
-              key={t.author}
-              className="border border-oryn-gray p-6 md:p-8"
-            >
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.author} delay={i * 100} as="blockquote" className="border border-oryn-gray p-6 md:p-8">
               <div className="mb-4 flex gap-1">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-oryn-black">
@@ -71,7 +70,7 @@ export default function SocialProof() {
               <footer className="mt-4 text-xs font-bold uppercase tracking-widest2 text-oryn-graydark">
                 {t.author} &mdash; {t.role}
               </footer>
-            </blockquote>
+            </Reveal>
           ))}
         </div>
       </div>

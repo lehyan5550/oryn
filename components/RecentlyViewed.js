@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { PRODUCTS } from "@/data/products";
 import ProductCard from "./ProductCard";
+import Reveal from "./Reveal";
 import { readRecentlyViewed } from "./TrackRecentlyViewed";
 
 export default function RecentlyViewed({ excludeId }) {
@@ -20,7 +21,7 @@ export default function RecentlyViewed({ excludeId }) {
   if (products.length === 0) return null;
 
   return (
-    <section className="mt-24">
+    <Reveal as="section" className="mt-24">
       <h2 className="mb-8 text-2xl font-extrabold uppercase tracking-tightest">
         Récemment Consultés
       </h2>
@@ -29,6 +30,6 @@ export default function RecentlyViewed({ excludeId }) {
           <ProductCard key={p.id} product={p} />
         ))}
       </div>
-    </section>
+    </Reveal>
   );
 }

@@ -1,5 +1,6 @@
 import ProductImage from "@/components/ProductImage";
 import Button from "@/components/Button";
+import Reveal from "@/components/Reveal";
 
 export const metadata = {
   title: "À Propos d'ORYN — Notre Histoire, Notre Mission",
@@ -44,7 +45,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-4 py-20 md:px-8 md:py-28">
+      <Reveal as="section" className="mx-auto max-w-3xl px-4 py-20 md:px-8 md:py-28">
         <h2 className="text-2xl font-extrabold uppercase tracking-tightest md:text-3xl">
           Notre Histoire
         </h2>
@@ -65,10 +66,10 @@ export default function AboutPage() {
           mission n&apos;a pas changé : fabriquer des vêtements qui
           performent aussi dur que ceux qui les portent.
         </p>
-      </section>
+      </Reveal>
 
       <section id="mission" className="border-y border-oryn-gray bg-oryn-gray/30 py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-4 text-center md:px-8">
+        <Reveal as="div" className="mx-auto max-w-3xl px-4 text-center md:px-8">
           <h2 className="text-2xl font-extrabold uppercase tracking-tightest md:text-3xl">
             Notre Mission
           </h2>
@@ -78,21 +79,21 @@ export default function AboutPage() {
             que rien de ce que vous portez ne vous freine jamais dans ce dont
             vous êtes capable.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <section id="values" className="mx-auto max-w-8xl px-4 py-20 md:px-8 md:py-28">
-        <div className="mb-12 text-center">
+        <Reveal className="mb-12 text-center">
           <p className="mb-2 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
             Ce en Quoi Nous Croyons
           </p>
           <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
             Nos Valeurs
           </h2>
-        </div>
+        </Reveal>
         <div className="grid gap-8 md:grid-cols-2 md:gap-10">
           {VALUES.map((value, i) => (
-            <div key={value.title} className="flex gap-5 border border-oryn-gray p-6 md:p-8">
+            <Reveal key={value.title} delay={i * 100} className="flex gap-5 border border-oryn-gray p-6 md:p-8">
               <span className="text-3xl font-extrabold text-oryn-red">
                 {String(i + 1).padStart(2, "0")}
               </span>
@@ -104,12 +105,12 @@ export default function AboutPage() {
                   {value.copy}
                 </p>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      <section className="bg-oryn-black py-20 text-center text-white md:py-24">
+      <Reveal as="section" className="bg-oryn-black py-20 text-center text-white md:py-24">
         <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
           Entraînez-Vous avec ORYN
         </h2>
@@ -120,7 +121,7 @@ export default function AboutPage() {
         <Button href="/collection" variant="inverse" size="lg" className="mt-8">
           Acheter Maintenant
         </Button>
-      </section>
+      </Reveal>
     </div>
   );
 }

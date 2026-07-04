@@ -24,14 +24,14 @@ export default function NewsletterPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/50 p-4 sm:items-center"
+      className="fixed inset-0 z-[60] flex animate-overlayIn items-end justify-center bg-black/50 p-4 sm:items-center"
       onClick={() => setOpen(false)}
       role="dialog"
       aria-modal="true"
       aria-label="Inscription newsletter"
     >
       <div
-        className="relative w-full max-w-md bg-oryn-black p-8 text-center text-white"
+        className="relative w-full max-w-md animate-modalIn bg-oryn-black p-8 text-center text-white"
         onClick={(e) => e.stopPropagation()}
       >
         <button

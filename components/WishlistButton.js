@@ -15,7 +15,7 @@ export default function WishlistButton({ productId, className = "" }) {
       }}
       aria-label={active ? "Retirer des favoris" : "Ajouter aux favoris"}
       aria-pressed={active}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
+      className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all hover:scale-110 active:scale-90 ${
         active
           ? "border-oryn-red bg-oryn-red text-white"
           : "border-oryn-gray bg-white text-oryn-black hover:border-oryn-black"
@@ -23,7 +23,7 @@ export default function WishlistButton({ productId, className = "" }) {
     >
       <svg
         viewBox="0 0 24 24"
-        className="h-4 w-4"
+        className={`h-4 w-4 ${active ? "animate-popIn" : ""}`}
         fill={active ? "currentColor" : "none"}
         stroke="currentColor"
         strokeWidth="2"

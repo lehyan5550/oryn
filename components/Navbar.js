@@ -87,7 +87,10 @@ export default function Navbar() {
               <path d="M12 21s-7-4.5-9.5-9C.7 8.4 2 5 5.3 4.2 7.6 3.6 10 4.7 12 7c2-2.3 4.4-3.4 6.7-2.8C22 5 23.3 8.4 21.5 12c-2.5 4.5-9.5 9-9.5 9Z" />
             </svg>
             {wishlistIds.length > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-oryn-red text-[10px] font-bold text-white">
+              <span
+                key={wishlistIds.length}
+                className="absolute -right-2 -top-2 flex h-4 w-4 animate-popIn items-center justify-center rounded-full bg-oryn-red text-[10px] font-bold text-white"
+              >
                 {wishlistIds.length}
               </span>
             )}
@@ -104,7 +107,10 @@ export default function Navbar() {
               <circle cx="18" cy="20" r="1.3" />
             </svg>
             {itemCount > 0 && (
-              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-oryn-red text-[10px] font-bold text-white">
+              <span
+                key={itemCount}
+                className="absolute -right-2 -top-2 flex h-4 w-4 animate-popIn items-center justify-center rounded-full bg-oryn-red text-[10px] font-bold text-white"
+              >
                 {itemCount}
               </span>
             )}

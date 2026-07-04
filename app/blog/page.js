@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BLOG_POSTS } from "@/data/blog";
 import ProductImage from "@/components/ProductImage";
+import Reveal from "@/components/Reveal";
 
 export const metadata = {
   title: "Le Journal — Entraînement, Combat & Récupération",
@@ -51,25 +52,27 @@ export default function BlogPage() {
       </Link>
 
       <div className="grid gap-x-6 gap-y-14 md:grid-cols-3">
-        {rest.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="group block">
-            <div className="aspect-[4/3] w-full overflow-hidden">
-              <ProductImage
-                gradient={post.gradient}
-                compact
-                className="h-full transition-transform duration-500 group-hover:scale-105"
-              />
-            </div>
-            <p className="mt-4 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
-              {post.category} &middot; {post.readTime}
-            </p>
-            <h2 className="mt-2 text-lg font-bold uppercase leading-snug tracking-wide group-hover:text-oryn-red">
-              {post.title}
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-oryn-graydark">
-              {post.excerpt}
-            </p>
-          </Link>
+        {rest.map((post, i) => (
+          <Reveal key={post.slug} delay={i * 100}>
+            <Link href={`/blog/${post.slug}`} className="group block">
+              <div className="aspect-[4/3] w-full overflow-hidden">
+                <ProductImage
+                  gradient={post.gradient}
+                  compact
+                  className="h-full transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <p className="mt-4 text-xs font-bold uppercase tracking-widest2 text-oryn-red">
+                {post.category} &middot; {post.readTime}
+              </p>
+              <h2 className="mt-2 text-lg font-bold uppercase leading-snug tracking-wide group-hover:text-oryn-red">
+                {post.title}
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-oryn-graydark">
+                {post.excerpt}
+              </p>
+            </Link>
+          </Reveal>
         ))}
       </div>
     </div>

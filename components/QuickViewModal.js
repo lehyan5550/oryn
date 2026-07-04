@@ -9,14 +9,14 @@ import { formatPrice } from "@/lib/format";
 export default function QuickViewModal({ product, onClose }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+      className="fixed inset-0 z-50 flex animate-overlayIn items-center justify-center bg-black/60 p-4"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={`Aperçu rapide — ${product.name}`}
     >
       <div
-        className="relative grid max-h-[90vh] w-full max-w-3xl grid-cols-1 gap-6 overflow-y-auto bg-white p-6 md:grid-cols-2 md:gap-8 md:p-8"
+        className="relative grid max-h-[90vh] w-full max-w-3xl animate-modalIn grid-cols-1 gap-6 overflow-y-auto bg-white p-6 md:grid-cols-2 md:gap-8 md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <button

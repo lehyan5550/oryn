@@ -12,6 +12,7 @@ import ProductFAQ from "@/components/ProductFAQ";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import TrackRecentlyViewed from "@/components/TrackRecentlyViewed";
 import WishlistButton from "@/components/WishlistButton";
+import Reveal from "@/components/Reveal";
 import { formatPrice } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -160,7 +161,7 @@ export default async function ProductPage({ params }) {
 
       <TrackRecentlyViewed productId={product.id} />
 
-      <section className="mt-20 max-w-2xl">
+      <Reveal as="section" className="mt-20 max-w-2xl">
         <h2 className="mb-2 text-2xl font-extrabold uppercase tracking-tightest">
           Avis
         </h2>
@@ -181,10 +182,10 @@ export default async function ProductPage({ params }) {
             Pas encore d&apos;avis écrit — soyez le premier à partager votre expérience.
           </p>
         )}
-      </section>
+      </Reveal>
 
       {related.length > 0 && (
-        <section className="mt-24">
+        <Reveal as="section" className="mt-24">
           <h2 className="mb-8 text-2xl font-extrabold uppercase tracking-tightest">
             Vous Aimerez Aussi
           </h2>
@@ -193,7 +194,7 @@ export default async function ProductPage({ params }) {
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
-        </section>
+        </Reveal>
       )}
 
       <RecentlyViewed excludeId={product.id} />

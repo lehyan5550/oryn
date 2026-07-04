@@ -24,10 +24,11 @@ export default function ProductCard({ product }) {
             />
             {product.badges?.length > 0 && (
               <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-                {product.badges.map((badge) => (
+                {product.badges.map((badge, i) => (
                   <span
                     key={badge}
-                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest2 ${
+                    style={{ animationDelay: `${i * 100}ms` }}
+                    className={`animate-popIn px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest2 ${
                       badge === "Promo"
                         ? "bg-oryn-red text-white"
                         : "bg-white text-oryn-black"

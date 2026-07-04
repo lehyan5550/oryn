@@ -29,7 +29,7 @@ export default function Button({
   disabled = false,
   fullWidth = false,
 }) {
-  const classes = `inline-flex items-center justify-center gap-2 font-bold uppercase tracking-widest2 transition-colors duration-200 disabled:opacity-40 disabled:cursor-not-allowed ${VARIANTS[variant]} ${SIZES[size]} ${fullWidth ? "w-full" : ""} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 font-bold uppercase tracking-widest2 transition-all duration-200 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100 ${VARIANTS[variant]} ${SIZES[size]} ${fullWidth ? "w-full" : ""} ${className}`;
 
   if (href) {
     return (

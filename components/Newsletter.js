@@ -1,7 +1,9 @@
+import Reveal from "./Reveal";
+
 export default function Newsletter() {
   return (
     <section className="bg-oryn-black py-20 text-white md:py-24">
-      <div className="mx-auto max-w-2xl px-4 text-center md:px-8">
+      <Reveal as="div" className="mx-auto max-w-2xl px-4 text-center md:px-8">
         <h2 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
           Rejoignez le Cercle ORYN
         </h2>
@@ -22,12 +24,12 @@ export default function Newsletter() {
           />
           <button
             type="submit"
-            className="whitespace-nowrap bg-oryn-red px-6 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700"
+            className="whitespace-nowrap bg-oryn-red px-6 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700 active:scale-95"
           >
             S&apos;inscrire
           </button>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

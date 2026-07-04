@@ -85,7 +85,12 @@ export default function AddToCartForm({ product }) {
         </div>
       </div>
 
-      <Button onClick={handleAdd} size="lg" fullWidth>
+      <Button
+        onClick={handleAdd}
+        size="lg"
+        fullWidth
+        className={added ? "animate-pulseOnce bg-oryn-red border-oryn-red" : ""}
+      >
         {added ? "Ajouté au Panier ✓" : "Ajouter au Panier"}
       </Button>
     </div>

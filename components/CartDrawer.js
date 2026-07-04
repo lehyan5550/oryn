@@ -45,7 +45,7 @@ export default function CartDrawer() {
           <>
             <ul className="flex-1 divide-y divide-oryn-gray overflow-y-auto px-6">
               {items.map((item) => (
-                <li key={item.key} className="flex gap-4 py-5">
+                <li key={item.key} className="flex animate-fadeIn gap-4 py-5">
                   <div className="h-24 w-20 flex-shrink-0">
                     <ProductImage gradient={item.gradient} icon={item.icon} compact className="h-full" />
                   </div>

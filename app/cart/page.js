@@ -50,7 +50,7 @@ export default function CartPage() {
         <div className="md:col-span-2">
           <ul className="divide-y divide-oryn-gray border-y border-oryn-gray">
             {items.map((item) => (
-              <li key={item.key} className="flex gap-5 py-6">
+              <li key={item.key} className="flex animate-fadeIn gap-5 py-6">
                 <div className="h-32 w-24 flex-shrink-0 md:h-40 md:w-32">
                   <ProductImage gradient={item.gradient} icon={item.icon} compact className="h-full" />
                 </div>

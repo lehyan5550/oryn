@@ -20,14 +20,14 @@ export default function SearchOverlay({ onClose }) {
 
   return (
     <div
-      className="fixed inset-0 z-[60] bg-black/50"
+      className="fixed inset-0 z-[60] animate-overlayIn bg-black/50"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label="Rechercher un produit"
     >
       <div
-        className="mx-auto mt-0 max-h-screen w-full max-w-2xl overflow-y-auto bg-white p-6 md:mt-24 md:p-8"
+        className="mx-auto mt-0 max-h-screen w-full max-w-2xl animate-modalIn overflow-y-auto bg-white p-6 md:mt-24 md:p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <form

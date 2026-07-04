@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import ProductCard from "./ProductCard";
+import Reveal from "./Reveal";
 import { getSwatch } from "@/lib/colors";
 
 const SORTS = [
@@ -179,8 +180,10 @@ export default function CollectionGrid({ activeCategoryKey = "all" }) {
         </p>
       ) : (
         <div className="grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product, i) => (
+            <Reveal key={product.id} delay={(i % 8) * 60}>
+              <ProductCard product={product} />
+            </Reveal>
           ))}
         </div>
       )}
