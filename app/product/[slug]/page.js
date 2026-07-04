@@ -7,6 +7,11 @@ import ProductCard from "@/components/ProductCard";
 import StarRating from "@/components/StarRating";
 import Review from "@/components/Review";
 import AddToCartForm from "@/components/AddToCartForm";
+import TrustBadges from "@/components/TrustBadges";
+import ProductFAQ from "@/components/ProductFAQ";
+import RecentlyViewed from "@/components/RecentlyViewed";
+import TrackRecentlyViewed from "@/components/TrackRecentlyViewed";
+import WishlistButton from "@/components/WishlistButton";
 import { formatPrice } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -83,20 +88,23 @@ export default async function ProductPage({ params }) {
         </div>
 
         <div>
-          {product.badges?.length > 0 && (
-            <div className="mb-3 flex gap-2">
-              {product.badges.map((badge) => (
-                <span
-                  key={badge}
-                  className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest2 ${
-                    badge === "Promo" ? "bg-oryn-red text-white" : "bg-oryn-black text-white"
-                  }`}
-                >
-                  {badge}
-                </span>
-              ))}
-            </div>
-          )}
+          <div className="flex items-start justify-between gap-4">
+            {product.badges?.length > 0 && (
+              <div className="mb-3 flex gap-2">
+                {product.badges.map((badge) => (
+                  <span
+                    key={badge}
+                    className={`px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest2 ${
+                      badge === "Promo" ? "bg-oryn-red text-white" : "bg-oryn-black text-white"
+                    }`}
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
+            <WishlistButton productId={product.id} className="ml-auto" />
+          </div>
 
           <h1 className="text-3xl font-extrabold uppercase tracking-tightest md:text-4xl">
             {product.name}
@@ -123,6 +131,10 @@ export default async function ProductPage({ params }) {
             <AddToCartForm product={product} />
           </div>
 
+          <div className="mt-6">
+            <TrustBadges />
+          </div>
+
           <div className="mt-10 border-t border-oryn-gray pt-8">
             <h2 className="mb-3 text-xs font-bold uppercase tracking-widest2">
               Détails du Produit
@@ -136,8 +148,17 @@ export default async function ProductPage({ params }) {
               ))}
             </ul>
           </div>
+
+          <div className="mt-10">
+            <h2 className="mb-3 text-xs font-bold uppercase tracking-widest2">
+              Questions Fréquentes
+            </h2>
+            <ProductFAQ />
+          </div>
         </div>
       </div>
+
+      <TrackRecentlyViewed productId={product.id} />
 
       <section className="mt-20 max-w-2xl">
         <h2 className="mb-2 text-2xl font-extrabold uppercase tracking-tightest">
@@ -174,6 +195,8 @@ export default async function ProductPage({ params }) {
           </div>
         </section>
       )}
+
+      <RecentlyViewed excludeId={product.id} />
     </div>
   );
 }

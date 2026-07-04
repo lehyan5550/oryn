@@ -9,8 +9,15 @@ Tailwind CSS, optimisée pour le marché et le SEO France.
 - Pages Accueil, Boutique, pages catégorie SEO (`/collection/[categorie]`),
   Produit, Panier, À Propos, Journal (blog)
 - Panier côté client (Context API + `useReducer`), persisté en `localStorage`
-- Filtres catégorie/prix et tri sur la boutique
-- Variantes produit (taille/couleur), quantités, drawer panier + page panier complète
+- Recherche produit fonctionnelle (overlay live + page `/recherche`)
+- Liste de favoris (`/favoris`), persistée en `localStorage`
+- Aperçu rapide (Quick View) depuis la grille, sans quitter la page
+- Produits récemment consultés (page produit)
+- Filtres catégorie/prix/couleur/taille et tri sur la boutique
+- Variantes produit avec swatches couleur réels, quantités, drawer panier +
+  page panier complète
+- Bandeau de réassurance et FAQ (livraison/retours/tailles) sur chaque fiche produit
+- Popup newsletter à délai (une fois par session)
 - Prix en euros (formatage `Intl.NumberFormat('fr-FR')`)
 - Pages légales : Mentions Légales, CGV, Politique de Confidentialité,
   Livraison & Retours, Guide des Tailles, Contact
@@ -45,14 +52,19 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 ```
 app/                     Routes (App Router) : accueil, collection,
                           collection/[category] (pages SEO par catégorie),
-                          product/[slug], cart, about, blog, blog/[slug],
-                          pages légales, sitemap, robots, icon
+                          product/[slug], cart, favoris, recherche, about,
+                          blog, blog/[slug], pages légales, sitemap, robots, icon
 components/               UI réutilisable : Navbar, Footer, Hero, ProductCard,
-                          CartDrawer, AddToCartForm, CollectionGrid, LegalPage...
+                          CartDrawer, AddToCartForm, CollectionGrid,
+                          QuickViewModal, WishlistButton, SearchOverlay,
+                          TrustBadges, ProductFAQ, NewsletterPopup, LegalPage...
 context/CartContext.js    État du panier, persisté en localStorage
+context/WishlistContext.js État des favoris, persisté en localStorage
 data/                     Catalogue produits (avec catégories FR + SEO),
                           articles de blog, avis
 lib/format.js             Formatage des prix en EUR (fr-FR)
+lib/colors.js             Table couleur → code hex pour les swatches
+lib/search.js             Recherche produit (insensible aux accents)
 ```
 
 ## SEO France — Ce Qui a Été Fait

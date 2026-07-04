@@ -3,7 +3,9 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import NewsletterPopup from "@/components/NewsletterPopup";
 import { CartProvider } from "@/context/CartContext";
+import { WishlistProvider } from "@/context/WishlistContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -57,10 +59,13 @@ export default function RootLayout({ children }) {
     <html lang="fr" className={inter.variable}>
       <body className="flex min-h-screen flex-col font-sans antialiased">
         <CartProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CartDrawer />
+          <WishlistProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <CartDrawer />
+            <NewsletterPopup />
+          </WishlistProvider>
         </CartProvider>
       </body>
     </html>

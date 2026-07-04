@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Button from "./Button";
+import { getSwatch } from "@/lib/colors";
 
 export default function AddToCartForm({ product }) {
   const [size, setSize] = useState(product.sizes[0]);
@@ -23,19 +24,21 @@ export default function AddToCartForm({ product }) {
         <p className="mb-2 text-xs font-bold uppercase tracking-widest2">
           Couleur : <span className="font-normal normal-case text-oryn-graydark">{color}</span>
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-3">
           {product.colors.map((c) => (
             <button
               key={c}
               onClick={() => setColor(c)}
-              className={`border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-colors ${
+              aria-label={c}
+              aria-pressed={color === c}
+              title={c}
+              className={`h-9 w-9 rounded-full border-2 transition-all ${
                 color === c
-                  ? "border-oryn-black bg-oryn-black text-white"
-                  : "border-oryn-gray text-oryn-black hover:border-oryn-black"
+                  ? "border-oryn-black ring-2 ring-offset-2 ring-oryn-black"
+                  : "border-oryn-gray hover:border-oryn-black"
               }`}
-            >
-              {c}
-            </button>
+              style={{ backgroundColor: getSwatch(c) }}
+            />
           ))}
         </div>
       </div>

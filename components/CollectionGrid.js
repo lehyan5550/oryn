@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CATEGORIES, PRODUCTS } from "@/data/products";
 import ProductCard from "./ProductCard";
+import { getSwatch } from "@/lib/colors";
 
 const SORTS = [
   { value: "featured", label: "Mise en Avant" },
@@ -31,76 +32,142 @@ function matchesPriceBand(price, band) {
 // links to those dedicated pages.
 export default function CollectionGrid({ activeCategoryKey = "all" }) {
   const [priceBand, setPriceBand] = useState("all");
+  const [color, setColor] = useState("all");
+  const [size, setSize] = useState("all");
   const [sort, setSort] = useState("featured");
 
+  const categoryScoped = useMemo(
+    () =>
+      PRODUCTS.filter(
+        (p) => activeCategoryKey === "all" || p.category === activeCategoryKey
+      ),
+    [activeCategoryKey]
+  );
+
+  const availableColors = useMemo(
+    () => Array.from(new Set(categoryScoped.flatMap((p) => p.colors))).sort(),
+    [categoryScoped]
+  );
+
+  const availableSizes = useMemo(
+    () => Array.from(new Set(categoryScoped.flatMap((p) => p.sizes))),
+    [categoryScoped]
+  );
+
   const products = useMemo(() => {
-    let list = PRODUCTS.filter(
-      (p) => activeCategoryKey === "all" || p.category === activeCategoryKey
-    ).filter((p) => matchesPriceBand(p.price, priceBand));
+    let list = categoryScoped
+      .filter((p) => matchesPriceBand(p.price, priceBand))
+      .filter((p) => color === "all" || p.colors.includes(color))
+      .filter((p) => size === "all" || p.sizes.includes(size));
 
     if (sort === "price-asc") list = [...list].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") list = [...list].sort((a, b) => b.price - a.price);
     if (sort === "rating") list = [...list].sort((a, b) => b.rating - a.rating);
 
     return list;
-  }, [activeCategoryKey, priceBand, sort]);
+  }, [categoryScoped, priceBand, color, size, sort]);
 
   return (
     <div>
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-oryn-gray pb-6">
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-8 flex flex-wrap gap-2 border-b border-oryn-gray pb-6">
+        <Link
+          href="/collection"
+          className={`px-4 py-2 text-xs font-bold uppercase tracking-widest2 transition-colors ${
+            activeCategoryKey === "all"
+              ? "bg-oryn-black text-white"
+              : "border border-oryn-gray text-oryn-black hover:border-oryn-black"
+          }`}
+        >
+          Tout
+        </Link>
+        {CATEGORIES.map((c) => (
           <Link
-            href="/collection"
+            key={c.slug}
+            href={`/collection/${c.slug}`}
             className={`px-4 py-2 text-xs font-bold uppercase tracking-widest2 transition-colors ${
-              activeCategoryKey === "all"
+              activeCategoryKey === c.key
                 ? "bg-oryn-black text-white"
                 : "border border-oryn-gray text-oryn-black hover:border-oryn-black"
             }`}
           >
-            Tout
+            {c.name}
           </Link>
-          {CATEGORIES.map((c) => (
-            <Link
-              key={c.slug}
-              href={`/collection/${c.slug}`}
-              className={`px-4 py-2 text-xs font-bold uppercase tracking-widest2 transition-colors ${
-                activeCategoryKey === c.key
-                  ? "bg-oryn-black text-white"
-                  : "border border-oryn-gray text-oryn-black hover:border-oryn-black"
-              }`}
-            >
-              {c.name}
-            </Link>
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <select
-            value={priceBand}
-            onChange={(e) => setPriceBand(e.target.value)}
-            className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
-            aria-label="Filtrer par prix"
-          >
-            {PRICE_BANDS.map((b) => (
-              <option key={b.value} value={b.value}>
-                {b.label}
-              </option>
-            ))}
-          </select>
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value)}
-            className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
-            aria-label="Trier les produits"
-          >
-            {SORTS.map((s) => (
-              <option key={s.value} value={s.value}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        ))}
       </div>
+
+      <div className="mb-8 flex flex-wrap items-center gap-3">
+        <select
+          value={priceBand}
+          onChange={(e) => setPriceBand(e.target.value)}
+          className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
+          aria-label="Filtrer par prix"
+        >
+          {PRICE_BANDS.map((b) => (
+            <option key={b.value} value={b.value}>
+              {b.label}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
+          className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
+          aria-label="Filtrer par couleur"
+        >
+          <option value="all">Toutes les Couleurs</option>
+          {availableColors.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={size}
+          onChange={(e) => setSize(e.target.value)}
+          className="border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
+          aria-label="Filtrer par taille"
+        >
+          <option value="all">Toutes les Tailles</option>
+          {availableSizes.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="ml-auto border border-oryn-gray bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide focus:border-oryn-black focus:outline-none"
+          aria-label="Trier les produits"
+        >
+          {SORTS.map((s) => (
+            <option key={s.value} value={s.value}>
+              {s.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {color !== "all" && (
+        <div className="mb-6 flex items-center gap-2">
+          <span
+            className="h-4 w-4 rounded-full border border-oryn-gray"
+            style={{ backgroundColor: getSwatch(color) }}
+          />
+          <span className="text-xs font-semibold uppercase tracking-wide text-oryn-graydark">
+            {color}
+          </span>
+          <button
+            onClick={() => setColor("all")}
+            className="text-xs text-oryn-graydark underline hover:text-oryn-black"
+          >
+            Retirer
+          </button>
+        </div>
+      )}
 
       <p className="mb-6 text-xs font-semibold uppercase tracking-widest2 text-oryn-graydark">
         {products.length} {products.length === 1 ? "Produit" : "Produits"}

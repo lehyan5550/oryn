@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Logo from "./Logo";
+import SearchOverlay from "./SearchOverlay";
 import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 
 const LINKS = [
   { href: "/collection", label: "Boutique" },
@@ -17,7 +19,9 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const { itemCount, openDrawer } = useCart();
+  const { ids: wishlistIds } = useWishlist();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -64,15 +68,29 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-5">
-          <Link
-            href="/collection"
-            className="hidden text-xs font-bold uppercase tracking-widest2 text-oryn-black hover:text-oryn-red md:block"
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="hidden text-oryn-black hover:text-oryn-red md:block"
             aria-label="Rechercher un produit"
           >
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="7" />
               <path d="M21 21l-4.3-4.3" strokeLinecap="round" />
             </svg>
+          </button>
+          <Link
+            href="/favoris"
+            className="relative hidden text-oryn-black hover:text-oryn-red md:block"
+            aria-label={`Mes favoris, ${wishlistIds.length} articles`}
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 21s-7-4.5-9.5-9C.7 8.4 2 5 5.3 4.2 7.6 3.6 10 4.7 12 7c2-2.3 4.4-3.4 6.7-2.8C22 5 23.3 8.4 21.5 12c-2.5 4.5-9.5 9-9.5 9Z" />
+            </svg>
+            {wishlistIds.length > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-oryn-red text-[10px] font-bold text-white">
+                {wishlistIds.length}
+              </span>
+            )}
           </Link>
           <button
             onClick={openDrawer}
@@ -108,9 +126,31 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/favoris"
+                onClick={() => setMenuOpen(false)}
+                className="text-sm font-bold uppercase tracking-widest2 text-oryn-black"
+              >
+                Mes Favoris ({wishlistIds.length})
+              </Link>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  setMenuOpen(false);
+                  setSearchOpen(true);
+                }}
+                className="text-sm font-bold uppercase tracking-widest2 text-oryn-black"
+              >
+                Rechercher
+              </button>
+            </li>
           </ul>
         </div>
       )}
+
+      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }
