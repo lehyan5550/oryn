@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import ProductImage from "./ProductImage";
 import StarRating from "./StarRating";
@@ -7,6 +8,12 @@ import AddToCartForm from "./AddToCartForm";
 import { formatPrice } from "@/lib/format";
 
 export default function QuickViewModal({ product, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
     <div
       className="fixed inset-0 z-50 flex animate-overlayIn items-center justify-center bg-black/60 p-4"

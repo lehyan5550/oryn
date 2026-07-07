@@ -90,9 +90,14 @@ lib/search.js             Recherche produit (insensible aux accents)
   affichée via `components/ProductImage.js`) pour que le site s'affiche
   correctement sans photographie. À remplacer par de vraies photos via
   `next/image` une fois les visuels disponibles.
-- Aucun moyen de paiement n'est branché — le bouton « Commander » sur
-  `/cart` est un élément d'interface. Connecter Stripe/PayPal/etc. avant
-  d'accepter de vraies commandes.
+- Paiement via Stripe Checkout : le bouton « Commander » sur `/cart` appelle
+  `app/api/checkout/route.js`, qui recalcule les prix côté serveur depuis
+  `data/products.js` (jamais depuis le panier client) et crée une session
+  Stripe Checkout. Pour l'activer, copier `.env.example` en `.env.local` et
+  renseigner `STRIPE_SECRET_KEY` (clé secrète Stripe, test ou live) et
+  `NEXT_PUBLIC_SITE_URL`. Sans clé configurée, le bouton affiche une erreur
+  explicite au lieu d'échouer silencieusement. Après paiement, Stripe
+  redirige vers `/commande/confirmation`, qui vide le panier.
 - Les pages **Mentions Légales**, **CGV** et **Politique de
   Confidentialité** contiennent des champs entre crochets
   (`[Raison sociale]`, `[SIRET]`, etc.) à compléter avec les vraies

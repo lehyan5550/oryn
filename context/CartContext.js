@@ -19,7 +19,7 @@ function lineKey(productId, size, color) {
 function cartReducer(state, action) {
   switch (action.type) {
     case "HYDRATE":
-      return action.payload || state;
+      return Array.isArray(action.payload?.items) ? action.payload : state;
 
     case "ADD_ITEM": {
       const { product, size, color, quantity } = action.payload;
@@ -104,6 +104,19 @@ export function CartProvider({ children }) {
     if (!hydrated) return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state, hydrated]);
+
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key !== STORAGE_KEY || e.newValue == null) return;
+      try {
+        dispatch({ type: "HYDRATE", payload: JSON.parse(e.newValue) });
+      } catch {
+        // ignore malformed storage
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   const addItem = (product, { size, color, quantity = 1 } = {}) => {
     dispatch({

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
 import Button from "./Button";
 import { getSwatch } from "@/lib/colors";
@@ -11,6 +11,15 @@ export default function AddToCartForm({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
+
+  // Client-side navigation between product pages reuses this component
+  // instance, so selections must reset whenever the product itself changes.
+  useEffect(() => {
+    setSize(product.sizes[0]);
+    setColor(product.colors[0]);
+    setQuantity(1);
+    setAdded(false);
+  }, [product.id]);
 
   const handleAdd = () => {
     addItem(product, { size, color, quantity });

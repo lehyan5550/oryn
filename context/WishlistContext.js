@@ -12,7 +12,10 @@ export function WishlistProvider({ children }) {
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      if (raw) setIds(JSON.parse(raw));
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) setIds(parsed);
+      }
     } catch {
       // ignore malformed storage
     } finally {
@@ -24,6 +27,20 @@ export function WishlistProvider({ children }) {
     if (!hydrated) return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
   }, [ids, hydrated]);
+
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key !== STORAGE_KEY || e.newValue == null) return;
+      try {
+        const parsed = JSON.parse(e.newValue);
+        if (Array.isArray(parsed)) setIds(parsed);
+      } catch {
+        // ignore malformed storage
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
 
   const isWishlisted = (productId) => ids.includes(productId);
 
