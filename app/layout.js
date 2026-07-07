@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import Analytics from "@/components/Analytics";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishlistContext";
 
@@ -52,6 +53,9 @@ export const metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -67,6 +71,7 @@ export default function RootLayout({ children }) {
             <NewsletterPopup />
           </WishlistProvider>
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );

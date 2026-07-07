@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import BestSellers from "@/components/BestSellers";
 import CategoryPreview from "@/components/CategoryPreview";
 import SocialProof from "@/components/SocialProof";
+import TrustpilotWidget from "@/components/TrustpilotWidget";
 import Newsletter from "@/components/Newsletter";
 
 export const metadata = {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <BestSellers />
       <CategoryPreview />
       <SocialProof />
+      <TrustpilotWidget />
       <Newsletter />
     </>
   );

@@ -1,16 +1,46 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import ProductImage from "@/components/ProductImage";
 import Button from "@/components/Button";
 import { formatPrice } from "@/lib/format";
+import { trackInitiateCheckout } from "@/lib/pixels";
 
 const FREE_SHIPPING_THRESHOLD = 100;
 
 export default function CartPage() {
-  const { items, subtotal, updateQuantity, removeItem } = useCart();
+  const { items, subtotal, itemCount, updateQuantity, removeItem } = useCart();
   const remainingForFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+  const [checkoutError, setCheckoutError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleCheckout = async () => {
+    setCheckoutError("");
+    setLoading(true);
+    trackInitiateCheckout({ value: subtotal, itemCount });
+
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setCheckoutError(data.error || "Une erreur est survenue.");
+        setLoading(false);
+        return;
+      }
+
+      window.location.href = data.url;
+    } catch {
+      setCheckoutError("Impossible de contacter le serveur de paiement.");
+      setLoading(false);
+    }
+  };
 
   if (items.length === 0) {
     return (
@@ -131,9 +161,18 @@ export default function CartPage() {
             <span>Total</span>
             <span>{formatPrice(subtotal)}</span>
           </div>
-          <Button size="lg" fullWidth className="mt-6">
-            Commander
+          <Button
+            size="lg"
+            fullWidth
+            className="mt-6"
+            onClick={handleCheckout}
+            disabled={loading}
+          >
+            {loading ? "Redirection..." : "Commander"}
           </Button>
+          {checkoutError && (
+            <p className="mt-3 text-center text-xs text-oryn-red">{checkoutError}</p>
+          )}
           <p className="mt-4 text-center text-xs text-oryn-graydark">
             Taxes calculées à l&apos;étape suivante. Paiement sécurisé.
           </p>

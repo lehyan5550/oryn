@@ -1,4 +1,5 @@
 import Reveal from "./Reveal";
+import NewsletterForm from "./NewsletterForm";
 
 export default function Newsletter() {
   return (
@@ -11,24 +12,15 @@ export default function Newsletter() {
           Accès prioritaire aux nouveautés, contenus d&apos;entraînement et
           10% de réduction sur votre première commande.
         </p>
-        <form className="mx-auto mt-8 flex max-w-md">
-          <label htmlFor="newsletter-email" className="sr-only">
-            Adresse email
-          </label>
-          <input
-            id="newsletter-email"
-            type="email"
-            required
+        <div className="mx-auto mt-8 max-w-md">
+          <NewsletterForm
+            idPrefix="home-newsletter"
             placeholder="Entrez votre email"
-            className="w-full border border-neutral-700 bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+            buttonLabel="S'inscrire"
+            inputClassName="w-full border border-neutral-700 bg-transparent px-4 py-3.5 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+            buttonClassName="whitespace-nowrap bg-oryn-red px-6 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700 active:scale-95 disabled:opacity-60"
           />
-          <button
-            type="submit"
-            className="whitespace-nowrap bg-oryn-red px-6 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700 active:scale-95"
-          >
-            S&apos;inscrire
-          </button>
-        </form>
+        </div>
       </Reveal>
     </section>
   );

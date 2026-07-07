@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import NewsletterForm from "./NewsletterForm";
 
 const COLUMNS = [
   {
@@ -52,24 +53,16 @@ export default function Footer() {
               Vêtements de performance pour ceux qui s&apos;entraînent pour
               gagner — à la salle, dans la cage, dans la vie.
             </p>
-            <form className="mt-6 flex max-w-sm">
-              <label htmlFor="footer-email" className="sr-only">
-                Adresse email
-              </label>
-              <input
-                id="footer-email"
-                type="email"
-                required
+            <div className="mt-6 max-w-sm">
+              <NewsletterForm
+                idPrefix="footer"
                 placeholder="Votre email"
-                className="w-full border border-neutral-700 bg-transparent px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+                buttonLabel="Ok"
+                successMessage="Merci, vérifiez votre boîte mail !"
+                inputClassName="w-full border border-neutral-700 bg-transparent px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+                buttonClassName="whitespace-nowrap bg-white px-5 text-xs font-bold uppercase tracking-widest2 text-oryn-black transition-colors hover:bg-oryn-red hover:text-white disabled:opacity-60"
               />
-              <button
-                type="submit"
-                className="whitespace-nowrap bg-white px-5 text-xs font-bold uppercase tracking-widest2 text-oryn-black transition-colors hover:bg-oryn-red hover:text-white"
-              >
-                Ok
-              </button>
-            </form>
+            </div>
           </div>
 
           {COLUMNS.map((col) => (

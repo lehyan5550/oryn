@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import NewsletterForm from "./NewsletterForm";
 
 const SESSION_KEY = "oryn_newsletter_popup_shown";
 const DELAY_MS = 12000;
@@ -63,30 +64,16 @@ export default function NewsletterPopup() {
               Inscrivez-vous à la newsletter ORYN pour recevoir votre code et
               l&apos;accès prioritaire aux nouveautés.
             </p>
-            <form
-              className="mt-6 flex"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-            >
-              <label htmlFor="popup-email" className="sr-only">
-                Adresse email
-              </label>
-              <input
-                id="popup-email"
-                type="email"
-                required
+            <div className="mt-6">
+              <NewsletterForm
+                idPrefix="popup"
                 placeholder="Votre email"
-                className="w-full border border-neutral-700 bg-transparent px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+                buttonLabel="Recevoir"
+                inputClassName="w-full border border-neutral-700 bg-transparent px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-white focus:outline-none"
+                buttonClassName="whitespace-nowrap bg-oryn-red px-5 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700 disabled:opacity-60"
+                onSuccess={() => setSubmitted(true)}
               />
-              <button
-                type="submit"
-                className="whitespace-nowrap bg-oryn-red px-5 text-xs font-bold uppercase tracking-widest2 text-white transition-colors hover:bg-red-700"
-              >
-                Recevoir
-              </button>
-            </form>
+            </div>
             <button
               onClick={() => setOpen(false)}
               className="mt-4 text-xs text-neutral-500 underline hover:text-neutral-300"

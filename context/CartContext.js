@@ -8,6 +8,7 @@ import {
   useReducer,
   useState,
 } from "react";
+import { trackAddToCart } from "@/lib/pixels";
 
 const CartContext = createContext(null);
 const STORAGE_KEY = "oryn_cart_v1";
@@ -116,6 +117,7 @@ export function CartProvider({ children }) {
       },
     });
     setDrawerOpen(true);
+    trackAddToCart({ name: product.name, price: product.price, quantity });
   };
 
   const removeItem = (key) => dispatch({ type: "REMOVE_ITEM", payload: { key } });
