@@ -5,11 +5,9 @@ import Logo from "./Logo";
 
 const MAX_SHIFT = 120;
 
-// Drop the generated hero loop at public/site/hero.mp4 (+ an optional
-// public/site/hero-poster.jpg first frame) to activate the video
-// background. Until those files exist the gradient below is the visual.
+// Drop the generated hero loop at public/site/hero.mp4 to activate the
+// video background. Until that file exists the gradient below is the visual.
 const HERO_VIDEO_SRC = "/site/hero.mp4";
-const HERO_POSTER_SRC = "/site/hero-poster.jpg";
 
 export default function HeroParallaxBackground() {
   const ref = useRef(null);
@@ -48,7 +46,6 @@ export default function HeroParallaxBackground() {
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src={HERO_VIDEO_SRC}
-          poster={HERO_POSTER_SRC}
           autoPlay
           loop
           muted

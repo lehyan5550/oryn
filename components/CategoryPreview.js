@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ProductImage from "./ProductImage";
 import Reveal from "./Reveal";
@@ -30,6 +31,7 @@ const CATEGORY_TILES = [
     copy: "Récupérer aussi sérieusement que vous vous entraînez.",
     gradient: "from-neutral-900 via-zinc-800 to-black",
     icon: "massage-gun",
+    image: "/site/recuperation.png",
   },
   {
     slug: "accessoires",
@@ -60,12 +62,22 @@ export default function CategoryPreview() {
                 href={`/collection/${tile.slug}`}
                 className="group relative block aspect-[4/5] overflow-hidden"
               >
-                <ProductImage
-                  gradient={tile.gradient}
-                  icon={tile.icon}
-                  compact
-                  className="h-full transition-transform duration-500 group-hover:scale-105"
-                />
+                {tile.image ? (
+                  <Image
+                    src={tile.image}
+                    alt={tile.name}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, (min-width: 768px) 33vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <ProductImage
+                    gradient={tile.gradient}
+                    icon={tile.icon}
+                    compact
+                    className="h-full transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
                 <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/10 to-transparent p-4 md:p-6">
                   <h3 className="text-lg font-extrabold uppercase tracking-tightest text-white md:text-2xl">
                     {tile.name}
